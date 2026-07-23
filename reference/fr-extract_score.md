@@ -1,18 +1,18 @@
 # Extraction du score
 
 Permet d'extraire le score des objets
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 ou
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 ## Arguments
 
 - x:
 
   objet de type
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   ou
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - format_output:
 
@@ -27,17 +27,17 @@ ou
 
 ## Value
 
-[`extract_score()`](https://inseefr.github.io/JDCruncheR/reference/extract_score.md)
+[`extract_score()`](https://inseefr.github.io/rjd3qr/reference/extract_score.md)
 renvoie un data.frame avec deux colonnes : le nom de la série et son
 score.
 
 ## Details
 
 Pour les objets
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md),
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
 le score renvoyé est soit l'objet `NULL` si aucun score n'a été calculé,
 soit un vecteur. Pour les objets
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md),
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
 c'est une liste de scores (`NULL` ou un vecteur).
 
 ## Examples

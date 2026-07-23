@@ -19,6 +19,11 @@ set_thresholds(test_name, thresholds)
   Named vector of numerics. The upper values of each break of a
   threshold.
 
+## Value
+
+Returns invisibly all the current (updated) thresholds. It's a list of
+item with grade ("Good", "Uncertain", "Bad", "Severe", "Poor"...).
+
 ## Details
 
 If `test_name` is missing, the argument `thresholds` is not used and all
@@ -31,6 +36,11 @@ to its default values.
 Finally, if `test_name` and `thresholds` are not missing, then only the
 thresholds of the test `test_name` are updated with the value
 `thresholds`.
+
+## See also
+
+[Traduction
+française](https://inseefr.github.io/rjd3qr/reference/fr-set_thresholds.md)
 
 ## Examples
 

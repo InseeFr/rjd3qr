@@ -26,7 +26,7 @@ extract_QR(file, x, thresholds = getOption("jdc_thresholds"), ...)
   in order to classify into modalities `Good`, `Uncertain`, `Bad` and
   `Severe`. By default, the value of the `"jdc_threshold"` option is
   used. You can call the
-  [`get_thresholds`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+  [`get_thresholds`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
   function to see what the `thresholds` object should look like.
 
 - ...:
@@ -37,8 +37,7 @@ extract_QR(file, x, thresholds = getOption("jdc_thresholds"), ...)
 
 ## Value
 
-a
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+a [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 object.
 
 ## Details
@@ -57,7 +56,7 @@ and
 when creating the parameters file.
 
 This function returns a
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 object, which is a list of 3 objects:
 
 - `modalities`, a `data.frame` containing several indicators and their
@@ -79,16 +78,16 @@ parallel and used with the `x` argument).
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-extract_QR.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-extract_QR.md)
 
 Other QR_matrix functions:
-[`rbind.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/rbind.QR_matrix.md),
-[`sort`](https://inseefr.github.io/JDCruncheR/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/JDCruncheR/reference/weighted_score.md),
-[`write()`](https://inseefr.github.io/JDCruncheR/reference/write.md),
-[`write.JVS_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.JVS_matrix.md),
-[`write.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.mQR_matrix.md)
+[`QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+[`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
+[`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md),
+[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
+[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md),
+[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
+[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
 
 ## Examples
 

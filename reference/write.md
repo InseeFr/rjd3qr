@@ -1,6 +1,6 @@
-# Exporting QR_matrix or mQR_matrix objects in an Excel file
+# Writing QR to files
 
-Exporting QR_matrix or mQR_matrix objects in an Excel file
+Writing QR to files
 
 ## Usage
 
@@ -13,34 +13,36 @@ write(x, ...)
 - x:
 
   a
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`JVS_matrix`](https://inseefr.github.io/rjd3qr/reference/JVS_matrix.md),
+  a
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   or
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   object.
 
 - ...:
 
   other parameters of the function
-  [`write.QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/write.QR_matrix.md).
+  [`write.QR_matrix`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md)
+  or
+  [`write.JVS_matrix`](https://inseefr.github.io/rjd3qr/reference/write.JVS_matrix.md).
 
 ## Value
 
 If `x` is a
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md),
-the function returns invisibly (via `invisible(x)`) the same
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
-object as `x`. Else if `x` is a
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md),
-the function returns invisibly (via `invisible(x)`) a workbook object
-created by `XLConnect::loadWorkbook()` for further manipulation.
+[`JVS_matrix`](https://inseefr.github.io/rjd3qr/reference/JVS_matrix.md)
+or a
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+the function returns invisibly (via `invisible(x)`) the same object as
+`x`. Else if `x` is a
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+the function returns invisibly (via
+[`invisible()`](https://rdrr.io/r/base/invisible.html)) a workbook
+object created by
+[`openxlsx::loadWorkbook()`](https://rdrr.io/pkg/openxlsx/man/loadWorkbook.html)
+for further manipulation.
 
 ## See also
 
-Other QR_matrix functions:
-[`extract_QR()`](https://inseefr.github.io/JDCruncheR/reference/extract_QR.md),
-[`rbind.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/rbind.QR_matrix.md),
-[`sort`](https://inseefr.github.io/JDCruncheR/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/JDCruncheR/reference/weighted_score.md),
-[`write.JVS_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.JVS_matrix.md),
-[`write.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.mQR_matrix.md)
+[Traduction
+française](https://inseefr.github.io/rjd3qr/reference/fr-write.md)

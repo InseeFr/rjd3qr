@@ -1,9 +1,21 @@
 # Objets bilan qualité
 
-[`QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 permet de créer un objet de type
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 contenant un bilan qualité.
+
+[`mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
+permet de créer un objet de type
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
+qui est une liste de bilans qualité (donc d'objets
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)).
+
+[`is.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
+et
+[`is.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
+permettent de tester si un objet est un bilan qualité ou une liste de
+bilans qualité.
 
 ## Arguments
 
@@ -25,10 +37,10 @@ contenant un bilan qualité.
 - x:
 
   un objet de type
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md),
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   ou une liste d'objets
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - ...:
 
@@ -36,35 +48,23 @@ contenant un bilan qualité.
 
 ## Value
 
-[`QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 crée et renvoie un objet
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
-[`mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
+[`mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 crée et renvoie un objet
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 (c'est-à-dire une liste d'objets
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)).
-[`is.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)).
+[`is.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 et
-[`is.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`is.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 renvoient des valeurs booléennes (`TRUE` ou `FALSE`).
 
 ## Details
 
-[`mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
-permet de créer un objet de type
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
-qui est une liste de bilans qualité (donc d'objets
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)).
-
-[`is.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
-et
-[`is.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
-permettent de tester si un objet est un bilan qualité ou une liste de
-bilans qualité.
-
 Un objet de type
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 est une liste de trois paramètres :
 
 - le paramètre `modalities` est un `data.frame` contenant un ensemble de

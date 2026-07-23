@@ -18,16 +18,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/InseeFr/JDCruncheR/blob/v0.4.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/InseeFr/rjd3qr/blob/develop/DESCRIPTION)
 
 Barthelemy T, Delaune E, Quartier-la-Tente A, Smyk A (2026).
 *JDCruncheR: 'JDemetra+' Quality Report Generator*. R package version
-0.4.0, <https://github.com/InseeFr/JDCruncheR>.
+0.4.1, <https://github.com/InseeFr/rjd3qr>.
 
     @Manual{,
       title = {JDCruncheR: 'JDemetra+' Quality Report Generator},
       author = {Tanguy Barthelemy and Eulalie Delaune and Alain Quartier-la-Tente and Anna Smyk},
       year = {2026},
-      note = {R package version 0.4.0},
-      url = {https://github.com/InseeFr/JDCruncheR},
+      note = {R package version 0.4.1},
+      url = {https://github.com/InseeFr/rjd3qr},
     }

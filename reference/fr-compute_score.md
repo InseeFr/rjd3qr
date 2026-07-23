@@ -7,9 +7,9 @@ Permet de calculer un score global à partir d'un bilan qualité
 - x:
 
   Objet de type
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   ou
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - score_pond:
 
@@ -51,7 +51,7 @@ Permet de calculer un score global à partir d'un bilan qualité
   afin de classer en modalités `Good`, `Uncertain`, `Bad` et `Severe`.
   Par défault, la valeur de l'option `"jdc_threshold"` est utilisée.
   Vous pouvez appeler la fonction
-  [`get_thresholds`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+  [`get_thresholds`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
   pour voir à quoi doit ressemble l'objet `thresholds`.
 
 - ...:
@@ -61,9 +61,9 @@ Permet de calculer un score global à partir d'un bilan qualité
 ## Value
 
 Un objet de type
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 ou
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 ## Details
 
@@ -142,7 +142,7 @@ QR <- extract_QR(demetra_path)
 #> Multiple column found for extraction of diagnostics.seas-i-f:2, diagnostics.seas-i-f
 #> Last column selected
 
-# Compute the score
+# Calculer le score
 QR <- compute_score(QR, n_contrib_score = 2)
 print(QR)
 #> The quality report matrix has 6 observations

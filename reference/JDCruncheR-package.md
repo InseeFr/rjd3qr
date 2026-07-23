@@ -8,11 +8,11 @@ downloaded here: <https://github.com/jdemetra/jwsacruncher/releases>.
 
 Useful links:
 
-- <https://github.com/InseeFr/JDCruncheR>
+- <https://github.com/InseeFr/rjd3qr>
 
-- <https://inseefr.github.io/JDCruncheR/>
+- <https://inseefr.github.io/rjd3qr/>
 
-- Report bugs at <https://github.com/InseeFr/JDCruncheR/issues>
+- Report bugs at <https://github.com/InseeFr/rjd3qr/issues>
 
 ## Author
 

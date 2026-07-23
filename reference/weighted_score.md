@@ -6,6 +6,15 @@ Function to weight a pre-calculated score
 
 ``` r
 weighted_score(x, pond = 1L)
+
+# Default S3 method
+weighted_score(x, pond = 1L)
+
+# S3 method for class 'QR_matrix'
+weighted_score(x, pond = 1L)
+
+# S3 method for class 'mQR_matrix'
+weighted_score(x, pond = 1L)
 ```
 
 ## Arguments
@@ -13,16 +22,16 @@ weighted_score(x, pond = 1L)
 - x:
 
   a
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   or
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   object
 
 - pond:
 
   the weights to use. Can be an integer, a vector of integers, the name
   of one of the quality report variables or a list of weights for the
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   objects.
 
 ## Value
@@ -32,16 +41,16 @@ the input with an additionnal weighted score
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-weighted_score.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-weighted_score.md)
 
 Other QR_matrix functions:
-[`extract_QR()`](https://inseefr.github.io/JDCruncheR/reference/extract_QR.md),
-[`rbind.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/rbind.QR_matrix.md),
-[`sort`](https://inseefr.github.io/JDCruncheR/reference/sort.md),
-[`write()`](https://inseefr.github.io/JDCruncheR/reference/write.md),
-[`write.JVS_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.JVS_matrix.md),
-[`write.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.mQR_matrix.md)
+[`QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+[`extract_QR()`](https://inseefr.github.io/rjd3qr/reference/extract_QR.md),
+[`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
+[`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md),
+[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
+[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
+[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
 
 ## Examples
 

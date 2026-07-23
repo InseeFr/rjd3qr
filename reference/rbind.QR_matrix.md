@@ -1,7 +1,7 @@
 # Combining QR_matrix objects
 
 Function to combine multiple
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 objects: line by line, both for the `modalities` and the `values` table.
 
 ## Usage
@@ -15,7 +15,7 @@ rbind(..., check_formula = TRUE)
 
 - ...:
 
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   objects to combine.
 
 - check_formula:
@@ -28,22 +28,22 @@ rbind(..., check_formula = TRUE)
 ## Value
 
 `rbind.QR_matrix()` returns a
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 object.
 
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-rbind.QR_matrix.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-rbind.QR_matrix.md)
 
 Other QR_matrix functions:
-[`extract_QR()`](https://inseefr.github.io/JDCruncheR/reference/extract_QR.md),
-[`sort`](https://inseefr.github.io/JDCruncheR/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/JDCruncheR/reference/weighted_score.md),
-[`write()`](https://inseefr.github.io/JDCruncheR/reference/write.md),
-[`write.JVS_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.JVS_matrix.md),
-[`write.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.mQR_matrix.md)
+[`QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+[`extract_QR()`](https://inseefr.github.io/rjd3qr/reference/extract_QR.md),
+[`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
+[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
+[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md),
+[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
+[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
 
 ## Examples
 

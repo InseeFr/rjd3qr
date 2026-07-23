@@ -8,9 +8,9 @@ variables.
 - x:
 
   objet de type
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   ou
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - decreasing:
 

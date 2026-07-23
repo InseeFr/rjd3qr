@@ -12,6 +12,15 @@ QR_matrix(modalities = NULL, values = NULL, score_formula = NULL)
 
 mQR_matrix(x = list(), ...)
 
+# S3 method for class 'QR_matrix'
+mQR_matrix(x = QR_matrix(), ...)
+
+# S3 method for class 'mQR_matrix'
+mQR_matrix(x = mQR_matrix.default(), ...)
+
+# Default S3 method
+mQR_matrix(x = list(), ...)
+
 is.QR_matrix(x)
 
 is.mQR_matrix(x)
@@ -68,4 +77,50 @@ A`QR_matrix` object is a list of three items:
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-QR_matrix.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-QR_matrix.md)
+
+Other QR_matrix functions:
+[`extract_QR()`](https://inseefr.github.io/rjd3qr/reference/extract_QR.md),
+[`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
+[`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md),
+[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
+[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md),
+[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
+[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
+
+## Examples
+
+``` r
+modalities <- data.frame(
+    Quality = c("Good", "Uncertain", "Bad"),
+    Seasonality = c("Good", "Good", "Bad")
+)
+
+values <- data.frame(
+    Quality = c(0.95, 0.75, 0.02),
+    Seasonality = c(0.80, 0.60, 0.01),
+    Period = c(12L, 12L, 12L)
+)
+
+# Create two quality report objects
+QR1 <- QR_matrix(
+    modalities = modalities,
+    values = values
+)
+
+QR2 <- QR_matrix(
+    modalities = modalities,
+    values = values
+)
+
+# Test whether an object is a quality report
+is.QR_matrix(QR1)
+#> [1] TRUE
+
+# Create a list of quality reports
+mQR <- mQR_matrix(QR1, QR2)
+
+# Test whether an object is a list of quality reports
+is.mQR_matrix(mQR)
+#> [1] TRUE
+```

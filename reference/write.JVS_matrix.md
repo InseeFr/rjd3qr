@@ -20,7 +20,7 @@ write(
 - x:
 
   a
-  [`JVS_matrix`](https://inseefr.github.io/JDCruncheR/reference/JVS_matrix.md)
+  [`JVS_matrix`](https://inseefr.github.io/rjd3qr/reference/JVS_matrix.md)
   object to export.
 
 - format:
@@ -34,7 +34,7 @@ write(
 - overwrite:
 
   logical indicating whether to create a CSV or Excel file if it doesn't
-  exist yet (`create = TRUE` by default)
+  exist yet (`overwrite = TRUE` by default)
 
 - ...:
 
@@ -43,7 +43,7 @@ write(
 ## Value
 
 Returns invisibly (via `invisible(x)`) the same
-[`JVS_matrix`](https://inseefr.github.io/JDCruncheR/reference/JVS_matrix.md)
+[`JVS_matrix`](https://inseefr.github.io/rjd3qr/reference/JVS_matrix.md)
 object as `x`.
 
 ## Details
@@ -54,11 +54,27 @@ object as `x`.
 
 ## See also
 
-Other QR_matrix functions:
-[`extract_QR()`](https://inseefr.github.io/JDCruncheR/reference/extract_QR.md),
-[`rbind.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/rbind.QR_matrix.md),
-[`sort`](https://inseefr.github.io/JDCruncheR/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/JDCruncheR/reference/weighted_score.md),
-[`write()`](https://inseefr.github.io/JDCruncheR/reference/write.md),
-[`write.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.mQR_matrix.md)
+[Traduction
+française](https://inseefr.github.io/rjd3qr/reference/fr-write.JVS_matrix.md)
+
+Other JVS_matrix functions:
+[`extract_JVS()`](https://inseefr.github.io/rjd3qr/reference/extract_JVS.md)
+
+## Examples
+
+``` r
+# Path leading to the needed CSV files demetra_m and series
+dir_path <- file.path(
+    system.file("extdata", package = "JDCruncheR"),
+    "WS/WS_world/Output/SAProcessing-1"
+)
+
+# Extract the JVS report from the CSV files
+JVS <- extract_JVS(dir = dir_path)
+
+# Export of the JVS report in an Excel file
+write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
+
+# Export of the JVS report in a CSV file
+write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
+```

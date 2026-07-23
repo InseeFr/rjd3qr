@@ -8,9 +8,9 @@ modalités ajoutables à la matrice des modalités.
 - x:
 
   objet de type
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   ou
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - variable_name:
 
@@ -35,8 +35,38 @@ modalités ajoutables à la matrice des modalités.
 ## Value
 
 La fonction
-[`recode_indicator_num()`](https://inseefr.github.io/JDCruncheR/reference/recode_indicator_num.md)
+[`recode_indicator_num()`](https://inseefr.github.io/rjd3qr/reference/recode_indicator_num.md)
 renvoie le même objet, enrichi de l'indicateur choisi. Ainsi, si
 l'entrée `x` est une matrice QR_matrix, un objet de classe `QR_matrix`
 est renvoyé. Si le code d'entrée `x` est une matrice mQR, un objet de la
 classe `mQR_matrix` est renvoyé.
+
+## Examples
+
+``` r
+# Chemin menant au fichier demetra_m.csv
+demetra_path <- file.path(
+    system.file("extdata", package = "JDCruncheR"),
+    "WS/WS_world/Output/SAProcessing-1",
+    "demetra_m.csv"
+)
+
+# Extraire le bilan qualité à partir du fichier demetra_m.csv
+QR <- extract_QR(demetra_path)
+#> Multiple column found for extraction of diagnostics.seas-i-qs:2, diagnostics.seas-i-qs
+#> Last column selected
+#> Multiple column found for extraction of diagnostics.seas-i-f:2, diagnostics.seas-i-f
+#> Last column selected
+
+QR2 <- recode_indicator_num(QR, variable_name = "residuals_skewness",
+                            breaks = c(0.0, 0.01, 0.05, 0.1, 1.0),
+                            labels = c("Good", "Uncertain", "Bad", "Severe")
+)
+
+QR$modalities$residuals_skewness
+#> [1] Good      Good      Good      Good      Uncertain Good     
+#> Levels: Bad < Uncertain < Good
+QR2$modalities$residuals_skewness
+#> [1] Severe    Severe    Severe    Severe    Uncertain Severe   
+#> Levels: Good Uncertain Bad Severe
+```

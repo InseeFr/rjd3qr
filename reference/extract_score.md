@@ -1,9 +1,9 @@
 # Score extraction
 
 To extract score variables from
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 or
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 objects.
 
 ## Usage
@@ -21,9 +21,9 @@ extract_score(
 - x:
 
   a
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   or
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - format_output:
 
@@ -44,16 +44,16 @@ and their score.
 ## Details
 
 For
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 objects, the output is a vector or the object `NULL` if no score was
 previously calculated. For
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 objects, it is a list of scores (`NULL` elements or vectors).
 
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-extract_score.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-extract_score.md)
 
 ## Examples
 

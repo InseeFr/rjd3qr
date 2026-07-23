@@ -1,7 +1,7 @@
 # Combiner par ligne des objets QR_matrix
 
 Permet de combiner plusieurs objets
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 en combinant par ligne les paramètres `modalities` et `values`.
 
 ## Arguments
@@ -9,7 +9,7 @@ en combinant par ligne les paramètres `modalities` et `values`.
 - ...:
 
   objets
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   à combiner.
 
 - check_formula:
@@ -23,9 +23,9 @@ en combinant par ligne les paramètres `modalities` et `values`.
 
 ## Value
 
-[`rbind.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/rbind.QR_matrix.md)
+[`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md)
 renvoie un objet
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 ## Examples
 

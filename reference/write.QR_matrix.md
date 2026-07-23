@@ -14,13 +14,12 @@ write(x, file, auto_format = TRUE, overwrite = TRUE, ...)
 - x:
 
   a
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   object.
 
 - file:
 
-  a `character` object with the path to the file to export que l'on veut
-  créer
+  a `character` object with the path to the file to export
 
 - auto_format:
 
@@ -30,7 +29,7 @@ write(x, file, auto_format = TRUE, overwrite = TRUE, ...)
 - overwrite:
 
   logical indicating whether to create an Excel file if it doesn't exist
-  yet (`create = TRUE` by default)
+  yet (`overwrite = TRUE` by default)
 
 - ...:
 
@@ -38,19 +37,43 @@ write(x, file, auto_format = TRUE, overwrite = TRUE, ...)
 
 ## Value
 
-Returns invisibly (via `invisible(x)`) a workbook object created by
-`XLConnect::loadWorkbook()` for further manipulation.
+Returns invisibly (via
+[`invisible()`](https://rdrr.io/r/base/invisible.html)) a workbook
+object created by
+[`openxlsx::loadWorkbook()`](https://rdrr.io/pkg/openxlsx/man/loadWorkbook.html)
+for further manipulation.
 
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-write.QR_matrix.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-write.QR_matrix.md)
 
 Other QR_matrix functions:
-[`extract_QR()`](https://inseefr.github.io/JDCruncheR/reference/extract_QR.md),
-[`rbind.QR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/rbind.QR_matrix.md),
-[`sort`](https://inseefr.github.io/JDCruncheR/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/JDCruncheR/reference/weighted_score.md),
-[`write()`](https://inseefr.github.io/JDCruncheR/reference/write.md),
-[`write.JVS_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.JVS_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/JDCruncheR/reference/write.mQR_matrix.md)
+[`QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md),
+[`extract_QR()`](https://inseefr.github.io/rjd3qr/reference/extract_QR.md),
+[`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
+[`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md),
+[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
+[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md),
+[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
+
+## Examples
+
+``` r
+# Path leading to a demetra_m matrix
+demetra_path <- file.path(
+    system.file("extdata", package = "JDCruncheR"),
+    "WS/WS_world/Output/SAProcessing-1",
+    "demetra_m.csv"
+)
+
+# Extract the quality report from the demetra_m file
+QR <- extract_QR(demetra_path)
+#> Multiple column found for extraction of diagnostics.seas-i-qs:2, diagnostics.seas-i-qs
+#> Last column selected
+#> Multiple column found for extraction of diagnostics.seas-i-f:2, diagnostics.seas-i-f
+#> Last column selected
+
+# Export the Quality Report to an Excel file
+write(x = QR, file = tempfile(fileext = ".xlsx"))
+```

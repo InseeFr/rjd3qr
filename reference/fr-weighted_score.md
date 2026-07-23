@@ -7,16 +7,16 @@ Permet de pondérer un score déjà calculé en fonction de variables.
 - x:
 
   objet de type
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   ou
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 - pond:
 
   pondération à appliquer au score. Il peut s'agir d'un nombre, d'un
   vecteur de nombres, du nom d'une des variables du bilan qualité ou
   d'une liste de pondérations pour les objets
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 ## Value
 

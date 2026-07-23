@@ -18,7 +18,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="JDemetra+ Quality Report Generator">
 <meta name="description" content="Tool for generating quality reports from cruncher outputs (and calculating series scores). The latest version of the cruncher can be downloaded here: &lt;https://github.com/jdemetra/jwsacruncher/releases&gt;.">
 <meta property="og:description" content="Tool for generating quality reports from cruncher outputs (and calculating series scores). The latest version of the cruncher can be downloaded here: &lt;https://github.com/jdemetra/jwsacruncher/releases&gt;.">
-<meta property="og:image" content="https://inseefr.github.io/JDCruncheR/logo.svg">
+<meta property="og:image" content="https://inseefr.github.io/rjd3qr/logo.svg">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">JDCruncheR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-jdemetra-">
 <li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jdemetra-app/releases">To download JDemetra+</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jwsacruncher/releases">To download the JDemetra+ cruncher</a></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/InseeFr/JDCruncheR/wiki/Installation-and-set-up-of-JDemetra-and-the-cruncher">Set up with a portable version of Java</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/InseeFr/rjd3qr/wiki/Installation-and-set-up-of-JDemetra-and-the-cruncher">Set up with a portable version of Java</a></li>
   </ul>
 </li>
       </ul>
@@ -99,7 +99,7 @@
 <span><span class="co"># install.packages("remotes")</span></span>
 <span></span>
 <span><span class="co"># Installer la version en cours de développement depuis GitHub</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"InseeFr/JDCruncheR"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"InseeFr/rjd3qr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -108,7 +108,7 @@
 <h4 id="chargement-du-package">Chargement du package<a class="anchor" aria-label="anchor" href="#chargement-du-package"></a>
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/JDCruncheR" class="external-link">"JDCruncheR"</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3qr" class="external-link">"JDCruncheR"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="changer-les-seuils-des-tests-statistiques">Changer les seuils des tests statistiques<a class="anchor" aria-label="anchor" href="#changer-les-seuils-des-tests-statistiques"></a>
@@ -407,7 +407,7 @@
 <span><span class="co"># install.packages("remotes")</span></span>
 <span></span>
 <span><span class="co"># Install development version from GitHub</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"InseeFr/JDCruncheR"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"InseeFr/rjd3qr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a>
@@ -416,7 +416,7 @@
 <h4 id="loading-the-package">Loading the package<a class="anchor" aria-label="anchor" href="#loading-the-package"></a>
 </h4>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/JDCruncheR" class="external-link">"JDCruncheR"</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3qr" class="external-link">"JDCruncheR"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="changing-statistical-test-thresholds">Changing statistical test thresholds<a class="anchor" aria-label="anchor" href="#changing-statistical-test-thresholds"></a>
@@ -702,8 +702,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=JDCruncheR" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/InseeFr/JDCruncheR/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/InseeFr/JDCruncheR/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/InseeFr/rjd3qr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/InseeFr/rjd3qr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -737,8 +737,8 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=JDCruncheR" class="external-link"><img src="https://www.r-pkg.org/badges/version/JDCruncheR" alt="CRAN status"></a></li>
-<li><a href="https://github.com/InseeFr/JDCruncheR/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/InseeFr/JDCruncheR/actions/workflows/lint.yaml/badge.svg" alt="Linting code"></a></li>
-<li><a href="https://github.com/InseeFr/JDCruncheR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/InseeFr/JDCruncheR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yaml/badge.svg" alt="Linting code"></a></li>
+<li><a href="https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 
@@ -751,7 +751,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

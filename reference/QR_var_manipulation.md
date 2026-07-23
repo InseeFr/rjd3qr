@@ -1,10 +1,11 @@
 # Editing the indicators list
 
-Functions to remove indicators (`remove_indicators()`) or retrain some
-indicators only (`retain_indicators()`) from
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+Functions to add indicator (`add_indicator()`), remove indicators
+(`remove_indicators()`) or retrain some indicators only
+(`retain_indicators()`) to and from
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 or
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 objects. The series names (column "series") cannot be removed.
 
 ## Usage
@@ -12,7 +13,36 @@ objects. The series names (column "series") cannot be removed.
 ``` r
 remove_indicators(x, ...)
 
+# Default S3 method
+remove_indicators(x, ...)
+
+# S3 method for class 'QR_matrix'
+remove_indicators(x, ...)
+
+# S3 method for class 'mQR_matrix'
+remove_indicators(x, ...)
+
 retain_indicators(x, ...)
+
+# Default S3 method
+retain_indicators(x, ...)
+
+# S3 method for class 'QR_matrix'
+retain_indicators(x, ...)
+
+# S3 method for class 'mQR_matrix'
+retain_indicators(x, ...)
+
+add_indicator(x, indicator, variable_name, ...)
+
+# Default S3 method
+add_indicator(x, indicator, variable_name, ...)
+
+# S3 method for class 'QR_matrix'
+add_indicator(x, indicator, variable_name, ...)
+
+# S3 method for class 'mQR_matrix'
+add_indicator(x, indicator, variable_name, ...)
 ```
 
 ## Arguments
@@ -20,30 +50,66 @@ retain_indicators(x, ...)
 - x:
 
   a
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   or
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   object.
 
 - ...:
 
-  names of the variable to remove (or keep)
+  other parameters of the function
+  [`merge`](https://rdrr.io/r/base/merge.html) (for `add_indicator`) or
+  names of the variable to remove or keep (for `retain_indicators` and
+  `remove_indicators`)
+
+- indicator:
+
+  a `vector` or a `data.frame` (cf. details).
+
+- variable_name:
+
+  a string containing the name of the variables to add.
 
 ## Value
 
-`remove_indicators()` returns the same object `x` reduced by the flags
-and variables used as arguments ... So if the input `x` is a QR_matrix,
-an object of class QR_matrix is returned. If the input `x` is a
-mQR_matrix, an object of class mQR_matrix is returned.
+- `remove_indicators()` returns the same object `x` reduced by the flags
+  and variables used as arguments ... So if the input `x` is a
+  `QR_matrix`, an object of class `QR_matrix` is returned. If the input
+  `x` is a `mQR_matrix`, an object of class `mQR_matrix` is returned.
+
+- `retains_indicators()` returns the same object, with only the chosen
+  indicators.
+
+- `add_indicators()` returns the same object, enhanced with the chosen
+  indicator. So if the input `x` is a `QR_matrix`, an object of class
+  `QR_matrix` is returned. If the input `x` is a `mQR_matrix`, an object
+  of class `mQR_matrix` is returned.
+
+## Details
+
+The function `add_indicator()` adds the chosen indicator to the values
+matrix of a quality report. Therefore, because said indicator isn't
+added in the modalities matrix, it cannot be used to calculate a score
+(except for weighting). Before using the added variable for score
+calculation, it will have to be coded with the function
+[`recode_indicator_num`](https://inseefr.github.io/rjd3qr/reference/recode_indicator_num.md).
+
+The new indicator can be a `vector` or a `data.frame`. In both cases,
+its format must allow for pairing:
+
+- a `vector`'s elements must be named and these names must match those
+  of the quality report (variable "series");
+
+- a `data.frame` must contain a "series" column that matches with the
+  quality report's series.
 
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-remove_indicators.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-QR_var_manipulation.md)
 
 Other var QR_matrix manipulation:
-[`add_indicator()`](https://inseefr.github.io/JDCruncheR/reference/add_indicator.md),
-[`recode_indicator_num()`](https://inseefr.github.io/JDCruncheR/reference/recode_indicator_num.md)
+[`recode_indicator_num()`](https://inseefr.github.io/rjd3qr/reference/recode_indicator_num.md)
 
 ## Examples
 
@@ -62,42 +128,39 @@ QR <- extract_QR(demetra_path)
 #> Multiple column found for extraction of diagnostics.seas-i-f:2, diagnostics.seas-i-f
 #> Last column selected
 
-# Compute the score
-QR <- compute_score(QR, n_contrib_score = 2)
+# Add a new indicator
+my_alea <- rnorm(nrow(QR$modalities))
+names(my_alea) <- QR$modalities$series
+QR <- add_indicator(QR, indicator = my_alea, variable_name = "alea")
 
-# Retain indicators
-retain_indicators(QR, "score", "m7") # retaining "score" and "m7"
+# Retains indicators
+retain_indicators(QR, "alea", "m7") # retaining "alea" and "m7"
 #> The quality report matrix has 6 observations
-#> There are 3 indicators in the modalities matrix and 3 indicators in the values matrix
+#> There are 2 indicators in the modalities matrix and 3 indicators in the values matrix
 #> 
 #> The quality report matrix contains the following variables:
-#> series  m7  score
+#> series  m7  alea
 #> 
-#> There's no additionnal variable in the values matrix
+#> The variables exclusively found in the values matrix are:
+#> alea
 #> 
-#> The smallest score is 0 and the greatest is 195
-#> The average score is 43.3333 and its standard deviation is 75.7408
-#> 
-#> The following formula was used to calculate the score:
-#> 30 * qs_residual_s_on_sa + 30 * f_residual_s_on_sa + 20 * qs_residual_sa_on_i + 20 * f_residual_sa_on_i + 30 * f_residual_td_on_sa + 20 * f_residual_td_on_i + 15 * oos_mean + 10 * oos_mse + 15 * residuals_independency + 5 * residuals_homoskedasticity + 5 * residuals_skewness + 5 * m7 + 5 * q_m2
-retain_indicators(QR, c("score", "m7")) # Same
+#> No score was calculated
+retain_indicators(QR, c("alea", "m7")) # Same
 #> The quality report matrix has 6 observations
-#> There are 3 indicators in the modalities matrix and 3 indicators in the values matrix
+#> There are 2 indicators in the modalities matrix and 3 indicators in the values matrix
 #> 
 #> The quality report matrix contains the following variables:
-#> series  m7  score
+#> series  m7  alea
 #> 
-#> There's no additionnal variable in the values matrix
+#> The variables exclusively found in the values matrix are:
+#> alea
 #> 
-#> The smallest score is 0 and the greatest is 195
-#> The average score is 43.3333 and its standard deviation is 75.7408
-#> 
-#> The following formula was used to calculate the score:
-#> 30 * qs_residual_s_on_sa + 30 * f_residual_s_on_sa + 20 * qs_residual_sa_on_i + 20 * f_residual_sa_on_i + 30 * f_residual_td_on_sa + 20 * f_residual_td_on_i + 15 * oos_mean + 10 * oos_mse + 15 * residuals_independency + 5 * residuals_homoskedasticity + 5 * residuals_skewness + 5 * m7 + 5 * q_m2
+#> No score was calculated
 
 # Remove indicators
-QR <- remove_indicators(QR, "score") # removing "score"
+QR <- remove_indicators(QR, "alea") # Remove "alea"
 
-extract_score(QR) # is NULL because we removed the score indicator
-#> NULL
+retain_indicators(QR, "alea")
+#> The quality report matrix is empty
+# is empty because we removed the alea indicator
 ```

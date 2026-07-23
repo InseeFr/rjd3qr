@@ -37,7 +37,7 @@ Pour obtenir la version en cours de développement depuis GitHub :
 # install.packages("remotes")
 
 # Installer la version en cours de développement depuis GitHub
-remotes::install_github("InseeFr/JDCruncheR")
+remotes::install_github("InseeFr/rjd3qr")
 ```
 
 ### Usage
@@ -56,7 +56,7 @@ il faut modifier l’option `"jdc_thresholds"`.
 
 Pour récupérer les valeurs des tests par défault, il faut appeler la
 fonction
-[`get_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+[`get_thresholds()`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
 :
 
 ``` r
@@ -139,7 +139,7 @@ get_thresholds(default = TRUE)
 ```
 
 Pour changer la valeur de l’option, on peut utiliser la fonction
-[`set_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/set_thresholds.md)
+[`set_thresholds()`](https://inseefr.github.io/rjd3qr/reference/set_thresholds.md)
 :
 
 ``` r
@@ -164,7 +164,7 @@ la valeur `"grade"` :
 
 Pour récupérer la valeur par défault des notes, il faut appeler la
 fonction
-[`get_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+[`get_thresholds()`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
 :
 
 ``` r
@@ -175,7 +175,7 @@ get_thresholds("grade", default = TRUE)
 ```
 
 Pour changer la valeur de la note, on peut utiliser la fonction
-[`set_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/set_thresholds.md)
+[`set_thresholds()`](https://inseefr.github.io/rjd3qr/reference/set_thresholds.md)
 :
 
 ``` r
@@ -289,7 +289,7 @@ To get the current development version from GitHub:
 # install.packages("remotes")
 
 # Install development version from GitHub
-remotes::install_github("InseeFr/JDCruncheR")
+remotes::install_github("InseeFr/rjd3qr")
 ```
 
 ### Usage
@@ -308,7 +308,7 @@ option `"jdc_thresholds"`.
 
 To get the (default or not) values of the thresholds of the tests, you
 can call the fonction
-[`get_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+[`get_thresholds()`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
 :
 
 ``` r
@@ -391,7 +391,7 @@ get_thresholds(default = TRUE)
 ```
 
 To change the value of the option, you can use the fonction
-[`set_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/set_thresholds.md):
+[`set_thresholds()`](https://inseefr.github.io/rjd3qr/reference/set_thresholds.md):
 
 ``` r
 
@@ -414,7 +414,7 @@ The mechanism is the same as for the statistical test thresholds with
 the `"grade"` value:
 
 To retrieve the default grade value, call the
-[`get_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+[`get_thresholds()`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
 function:
 
 ``` r
@@ -425,7 +425,7 @@ get_thresholds("grade", default = TRUE)
 ```
 
 To change the value of the grade, you can use the
-[`set_thresholds()`](https://inseefr.github.io/JDCruncheR/reference/set_thresholds.md)
+[`set_thresholds()`](https://inseefr.github.io/rjd3qr/reference/set_thresholds.md)
 function:
 
 ``` r

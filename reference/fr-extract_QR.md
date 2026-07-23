@@ -5,26 +5,16 @@ matrice des diagnostics.
 
 ## Arguments
 
-- matrix_output_file:
-
-  Chaîne de caracère. Chemin vers le fichier CSV contenant la matrice
-  des diagnostics.
-
 - file:
 
-  Chaîne de caracère. Chemin vers le fichier CSV contenant la matrice
+  Chaîne de caractères. Chemin vers le fichier CSV contenant la matrice
   des diagnostics. Cet argument remplace l'argument
   `matrix_output_file`.
 
-- sep:
+- x:
 
-  séparateur de caractères utilisé dans le fichier csv (par défaut
-  `sep = ";"`)
-
-- dec:
-
-  séparateur décimal utilisé dans le fichier csv (par défaut
-  `dec = ","`)
+  un data.frame contenant la matrice de diagnostiques. Si manquante, on
+  va lire la matrice à l'emplacement de `file`.
 
 - thresholds:
 
@@ -32,13 +22,20 @@ matrice des diagnostics.
   afin de classer en modalités `Good`, `Uncertain`, `Bad` et `Severe`.
   Par défault, la valeur de l'option `"jdc_threshold"` est utilisée.
   Vous pouvez appeler la fonction
-  [`get_thresholds`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+  [`get_thresholds`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
   pour voir à quoi doit ressemble l'objet `thresholds`.
+
+- ...:
+
+  D'autres paramètres pour la fonction `read_demetra_m` comme `sep`,
+  séparateur de caractères utilisé dans le fichier csv (par défaut
+  `sep = ";"`) et `dec` séparateur décimal utilisé dans le fichier csv
+  (par défaut `dec = ","`).
 
 ## Value
 
 Un objet de type
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md).
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md).
 
 ## Details
 
@@ -59,7 +56,7 @@ ou de
 lors de la création du fichier de paramètres).
 
 Le résultat de cette fonction est un objet
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 qui est une liste de trois paramètres :
 
 - le paramètre `modalities` est un `data.frame` contenant un ensemble de

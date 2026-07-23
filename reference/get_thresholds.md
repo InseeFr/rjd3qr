@@ -19,9 +19,19 @@ get_thresholds(test_name, default = TRUE)
   Boolean. (default is TRUE) If TRUE, the default threshold will be
   returned. If FALSE the current used thresholds.
 
+## Value
+
+Returns invisibly the thresholds of the chosen item. If test_name is
+missing, it returns all the current thresholds.
+
 ## Details
 
 If `test_name` is missing, all threshold will be returned.
+
+## See also
+
+[Traduction
+française](https://inseefr.github.io/rjd3qr/reference/fr-get_thresholds.md)
 
 ## Examples
 

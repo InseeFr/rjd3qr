@@ -30,9 +30,9 @@ compute_score(x, ...)
 - x:
 
   a
-  [`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   or
-  [`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+  [`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
   object.
 
 - score_pond:
@@ -73,7 +73,7 @@ compute_score(x, ...)
   in order to classify into modalities `Good`, `Uncertain`, `Bad` and
   `Severe`. By default, the value of the `"jdc_threshold"` option is
   used. You can call the
-  [`get_thresholds`](https://inseefr.github.io/JDCruncheR/reference/get_thresholds.md)
+  [`get_thresholds`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
   function to see what the `thresholds` object should look like.
 
 - ...:
@@ -82,10 +82,9 @@ compute_score(x, ...)
 
 ## Value
 
-a
-[`QR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+a [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 or
-[`mQR_matrix`](https://inseefr.github.io/JDCruncheR/reference/QR_matrix.md)
+[`mQR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
 object.
 
 ## Details
@@ -147,7 +146,7 @@ some variables down to 1 when some conditions are met.
 ## See also
 
 [Traduction
-française](https://inseefr.github.io/JDCruncheR/reference/fr-compute_score.md)
+française](https://inseefr.github.io/rjd3qr/reference/fr-compute_score.md)
 
 ## Examples
 

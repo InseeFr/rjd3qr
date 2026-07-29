@@ -18,7 +18,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/InseeFr/rjd3qr/blob/develop/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/InseeFr/rjd3qr/blob/v0.4.1/DESCRIPTION)
 
 Barthelemy T, Delaune E, Quartier-la-Tente A, Smyk A (2026).
 *JDCruncheR: 'JDemetra+' Quality Report Generator*. R package version

@@ -17,7 +17,7 @@
 #' fichier avec 2 feuilles par bilan qualité (\code{Values} et
 #' \code{Modalities}).
 #' @param overwrite Booléen. Est ce qu'un fichier existant doit être ré-écrit ?
-#'   Par défaut, `overwrite = FALSE`.
+#'   Par défaut, `overwrite = TRUE`.
 #' @param verbose Booleen. Est ce que des informations supplémentaires doivent
 #'   être affichées ? Valeur par défaut, `TRUE`.
 #' @param ... Autre argument non utilisé.
@@ -97,7 +97,7 @@ NULL
 #'   \code{layout_file = "AllTogether"} corresponds to creating a file with 2
 #'   sheets per quality report (\code{Values} and \code{Modalities}).
 #' @param overwrite Boolean. Should an existing file be overwritten?
-#'   By default, \code{overwrite = FALSE}.
+#'   By default, \code{overwrite = TRUE}.
 #' @param verbose Boolean indicating whether to print additional information.
 #'   Default is `TRUE`.
 #' @param ... Other unused arguments.
@@ -185,7 +185,7 @@ write.QR_matrix <- function(
     x,
     file,
     auto_format = TRUE,
-    overwrite = FALSE,
+    overwrite = TRUE,
     ...
 ) {
     ext <- tools::file_ext(file)
@@ -243,7 +243,7 @@ write.QR_matrix <- function(
 write.JVS_matrix <- function(
     x,
     file = file.path(tempdir(), "JobVacancySurveyQR.csv"),
-    overwrite = FALSE,
+    overwrite = TRUE,
     verbose = TRUE,
     ...
 ) {
@@ -331,7 +331,7 @@ write.mQR_matrix <- function(
     export_dir,
     layout_file = c("ByComponent", "ByQRMatrix", "AllTogether"),
     auto_format = TRUE,
-    overwrite = FALSE,
+    overwrite = TRUE,
     ...
 ) {
     #by component = 1file / component (different QR in same file) = 2 files

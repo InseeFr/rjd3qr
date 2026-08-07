@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/JDCruncheR)](https://cran.r-project.org/package=JDCruncheR)
-[![Linting code](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yaml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yaml)
-[![R-CMD-check](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yaml)
+[![Linting code](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yml)
+[![R-CMD-check](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yml)
 <!-- badges: end -->
 
 

@@ -1,16 +1,16 @@
 Type: Package
-Package: JDCruncheR
+Package: rjd3qr
 Title: 'JDemetra+' Quality Report Generator
-Version: 0.4.1
+Version: 0.4.2
 Authors@R: c(
     person(given = "Tanguy", 
            family = "Barthelemy", 
-           role = c("aut", "cre", "art"),
+           role = c("aut", "art"),
            email ="tanguy.barthelemy@insee.fr"),
     person(given = "Eulalie", 
            family = "Delaune", 
-           role = c("aut"),
-           email ="eulalie.delaune-virrion@insee.fr"),
+           role = c("aut", "cre"),
+           email ="timeserieswithjdemetraandr@gmail.com"),
     person(given = "Alain",
            family = "Quartier-la-Tente",
            role = "aut",

@@ -2,27 +2,116 @@
 % Please edit documentation in R/export.R
 \name{write}
 \alias{write}
-\title{Writing QR to files}
+\alias{write.QR_matrix}
+\alias{write.JVS_matrix}
+\alias{write.mQR_matrix}
+\title{Writing Quality Reports to Files}
 \usage{
 write(x, ...)
+
+\method{write}{QR_matrix}(x, file, auto_format = TRUE, overwrite = TRUE, ...)
+
+\method{write}{JVS_matrix}(
+  x,
+  file = file.path(tempdir(), "JobVacancySurveyQR.csv"),
+  overwrite = TRUE,
+  verbose = TRUE,
+  ...
+)
+
+\method{write}{mQR_matrix}(
+  x,
+  export_dir,
+  layout_file = c("ByComponent", "ByQRMatrix", "AllTogether"),
+  auto_format = TRUE,
+  overwrite = TRUE,
+  ...
+)
 }
 \arguments{
-\item{x}{a \code{\link{JVS_matrix}}, a \code{\link{QR_matrix}} or
-\code{\link{mQR_matrix}} object.}
+\item{x}{An object of class \code{\link{JVS_matrix}},
+\code{\link{QR_matrix}}, or \code{\link{mQR_matrix}} to export.}
 
-\item{...}{other parameters of the function
-\code{\link{write.QR_matrix}} or \code{\link{write.JVS_matrix}}.}
+\item{...}{Other unused arguments.}
+
+\item{file}{A \code{character} object containing the path to the file to be
+created.}
+
+\item{auto_format}{Boolean indicating whether to format the output
+(\code{auto_format = TRUE} by default).}
+
+\item{overwrite}{Boolean. Should an existing file be overwritten?
+By default, \code{overwrite = TRUE}.}
+
+\item{verbose}{Boolean indicating whether to print additional information.
+Default is \code{TRUE}.}
+
+\item{export_dir}{Path to the directory that will contain the exported files.}
+
+\item{layout_file}{Export parameter. By default,
+(\code{layout_file = "ByComponent"}) and an Excel file is exported for
+each component of the quality report matrix (modalities or values matrix),
+where each sheet corresponds to a quality report. To have one file per
+quality report, with each sheet corresponding to the exported component,
+use \code{layout_file = "ByQRMatrix"}. The modality
+\code{layout_file = "AllTogether"} corresponds to creating a file with 2
+sheets per quality report (\code{Values} and \code{Modalities}).}
 }
 \value{
-If \code{x} is a \code{\link{JVS_matrix}} or a \code{\link{mQR_matrix}}, the
-function returns invisibly (via \code{invisible(x)}) the same object as
-\code{x}.
-Else if \code{x} is a \code{\link{QR_matrix}}, the function returns
-invisibly (via \code{invisible()}) a workbook object created by
+If \code{x} is of class \code{\link{JVS_matrix}} or
+\code{\link{mQR_matrix}}, the function invisibly returns (with
+\code{invisible()}) the object \code{x}.
+If \code{x} is of class \code{\link{QR_matrix}}, the function invisibly
+returns (with \code{invisible()}) a workbook object created by
 \code{openxlsx::loadWorkbook()} for further manipulation.
 }
 \description{
-Writing QR to files
+Writing Quality Reports to Files
+}
+\details{
+Objects of class \code{\link{JVS_matrix}} can be exported to
+CSV or Excel files (depending on the \code{format} argument).
+Objects of class \code{\link{QR_matrix}} and \code{\link{mQR_matrix}} are
+only written to Excel files.
+}
+\examples{
+# Path to the directory containing the demetra_m file and series
+dir_path <- system.file(
+    "extdata", "WS", "WS_world", "Output", "SAProcessing-1",
+    package = "rjd3qr"
+)
+
+# Path to the demetra_m.csv file
+demetra_path <- file.path(dir_path, "demetra_m.csv")
+
+# Extract the quality report from the demetra_m.csv file
+QR <- extract_QR(demetra_path)
+
+# Export the QR to an Excel file
+write(x = QR, file = tempfile(fileext = ".xlsx"))
+
+# Prepare 2 quality reports
+QR1 <- compute_score(x = QR, n_contrib_score = 5)
+QR2 <- compute_score(
+    x = QR,
+    score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
+                   f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
+                   oos_mean = 30, residuals_skewness = 15, m7 = 25)
+)
+mQR <- mQR_matrix(list(a = QR1, b = QR2))
+
+# Export the mQR to an Excel file
+write(x = mQR, export_dir = tempdir())
+
+# Extract the JVS report from CSV files
+JVS <- extract_JVS(dir = dir_path)
+
+# Export the JVS report to an Excel file
+write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
+
+# Export the JVS report to a CSV file
+write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
+
 }
 \seealso{
 \link[=fr-write]{Traduction française}

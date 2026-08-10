@@ -25,7 +25,7 @@ both for the \code{modalities} and the \code{values} table.
 \examples{
 # Path of matrix demetra_m
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )
@@ -34,7 +34,10 @@ demetra_path <- file.path(
 QR <- extract_QR(demetra_path)
 
 # Compute differents scores
-QR1 <- compute_score(QR, score_pond = c(m7 = 2, q = 3, qs_residual_s_on_sa = 5))
+QR1 <- compute_score(
+    x = QR,
+    score_pond = c(m7 = 2, q = 3, qs_residual_s_on_sa = 5)
+)
 QR2 <- compute_score(QR, score_pond = c(m7 = 2, qs_residual_s_on_sa = 5))
 
 # Merge two quality report
@@ -50,8 +53,6 @@ Other QR_matrix functions:
 \code{\link[=extract_QR]{extract_QR()}},
 \code{\link[=print.QR_matrix]{print.QR_matrix()}},
 \code{\link{sort}},
-\code{\link[=weighted_score]{weighted_score()}},
-\code{\link[=write.QR_matrix]{write.QR_matrix()}},
-\code{\link[=write.mQR_matrix]{write.mQR_matrix()}}
+\code{\link[=weighted_score]{weighted_score()}}
 }
 \concept{QR_matrix functions}

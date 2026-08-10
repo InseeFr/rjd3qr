@@ -30,6 +30,8 @@ to its default values.
 Finally, if \code{test_name} and \code{thresholds} are not missing, then only
 the thresholds of the test \code{test_name} are updated with the value
 \code{thresholds}.
+
+This function updates the option \code{rjd3qr.thresholds}.
 }
 \examples{
 

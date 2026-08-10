@@ -7,16 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-08-10
+
 ## [0.4.1] - 2026-07-29
 
 ### Changed
 
+* The `write` method for `JVS_matrix` object now works with a `file` argument instead of `export_dir` and `format`.
+* ARIMA model is now displayed with space instead of commas
+* {JDCruncheR} becomes {rjd3qr}
+* The option `jdc_thresholds` is renamed `rjd3qr.thresholds` to avoid conflict with other packages.
 * In JVS, Trend filters and D7 filters are now displayed starting with a "H"
 * In JVS, Leap year and Easter variables are displayed as "Yes" or "No" variables
 * In JVS, we apply a threshold of 0.05 to stat_Q between Good and Bad
 * In JVS, Quality SEVERE is renamed in POOR
 * In JVS, the final series are no longer used and replaced by the decomposition series before applying the effects of preadjustment
-* In JVS, the irregular standard deviation is now based on the computation sa_cmp - t_cmp
+* In JVS, the irregular standard deviation is now based on the computation sa - t
 * In example data, we updated the generated output csv files to match JVS and QR creation
 * The column follows now the same order as the plug-in
 
@@ -191,7 +197,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * addition of the parameter `log_file` to the functions `cruncher()` and `cruncher_and_param()` to export the cruncher log if required.
 * update of the options `default_matrix_item` and `default_tsmatrix_series`, in accordance with the parameters of version 2.2.0 of JDemetra+.
 
-[Unreleased]: https://github.com/InseeFr/rjd3qr/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/InseeFr/rjd3qr/compare/v0.4.2...HEAD
+[0.4.2]: https://github.com/InseeFr/rjd3qr/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/InseeFr/rjd3qr/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/InseeFr/rjd3qr/compare/v0.3.6...v0.4.0
 [0.3.6]: https://github.com/InseeFr/rjd3qr/compare/v0.3.5...v0.3.6

@@ -57,7 +57,7 @@
 #' @examples
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -132,7 +132,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -152,7 +152,7 @@ NULL
 extract_QR <- function(
     file,
     x,
-    thresholds = getOption("jdc_thresholds"),
+    thresholds = getOption("rjd3qr.thresholds"),
     ...
 ) {
     if (missing(x) && missing(file)) {

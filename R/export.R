@@ -1,3 +1,478 @@
+#' @title Ecriture de bilans qualités dans des fichiers
+#'
+#' @param x Objet de classe \code{\link{JVS_matrix}}, \code{\link{QR_matrix}} ou
+#'   \code{\link{mQR_matrix}} à exporter
+#' @param file un objet de type \code{character} contenant le chemin menant au
+#'   fichier que l'on veut créer
+#' @param export_dir Chemin vers le dossier qui contiendra les exports.
+#' @param auto_format booléen indiquant s'il faut formatter la sortie
+#' (\code{auto_format = TRUE} par défaut).
+#' @param layout_file paramètre d'export. Par défaut,
+#' (\code{layout_file = "ByComponent"}) et un fichier Excel est exporté par
+#' composante de la matrice bilan qualité (matrice des modalités ou des
+#' valeurs), dont chaque feuille correspond à un bilan qualité. Pour avoir un
+#' fichier par bilan qualité dont chaque feuille correspond à la composante
+#' exportée, utiliser \code{layout_file = "ByQRMatrix"}.
+#' La modalité \code{layout_file = "AllTogether"} correspond à la création d'un
+#' fichier avec 2 feuilles par bilan qualité (\code{Values} et
+#' \code{Modalities}).
+#' @param overwrite Booléen. Est ce qu'un fichier existant doit être ré-écrit ?
+#'   Par défaut, `overwrite = TRUE`.
+#' @param verbose Booleen. Est ce que des informations supplémentaires doivent
+#'   être affichées ? Valeur par défaut, `TRUE`.
+#' @param ... Autre argument non utilisé.
+#'
+#' @returns
+#' Si \code{x} est de classe \code{\link{JVS_matrix}} ou
+#' \code{\link{mQR_matrix}}, la fonction retourne de manière invisible (avec
+#' `invisible()`) l'objet x.
+#' Si \code{x} est de classe \code{\link{QR_matrix}}, la fonction retourne de
+#' manière invisible (avec `invisible()`) l'objet un classeur créé par
+#' \code{openxlsx::loadWorkbook()} pour une manipulation ultérieure.
+#'
+#' @details
+#' Les objets de classe \code{\link{JVS_matrix}} peuvent être exportés dans des
+#' fichiers csv ou Excel (selon l'argument `format`).
+#' Les objets de classe \code{\link{QR_matrix}} et \code{\link{mQR_matrix}} ne
+#' sont écrits que dans des fichiers Excel.
+#'
+#' @examples
+#' # Chemin menant au répertoire contenant le fichier demetra_m et les séries
+#' dir_path <- system.file(
+#'     "extdata", "WS", "WS_world", "Output", "SAProcessing-1",
+#'     package = "rjd3qr"
+#' )
+#'
+#' # Chemin menant au fichier demetra_m.csv
+#' demetra_path <- file.path(dir_path, "demetra_m.csv")
+#'
+#' # Extraire le bilan qualité à partir du fichier demetra_m.csv
+#' QR <- extract_QR(demetra_path)
+#'
+#' # Export du QR dans un fichier Excel
+#' write(x = QR, file = tempfile(fileext = ".xlsx"))
+#'
+#' # Préparation de 2 bilans qualités
+#' QR1 <- compute_score(x = QR, n_contrib_score = 5)
+#' QR2 <- compute_score(
+#'     x = QR,
+#'     score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
+#'                    f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
+#'                    oos_mean = 30, residuals_skewness = 15, m7 = 25)
+#' )
+#' mQR <- mQR_matrix(list(a = QR1, b = QR2))
+#'
+#' # Export du mQR dans un fichier Excel
+#' write(x = mQR, export_dir = tempdir())
+#'
+#' # Extraire le rapport JVS à partir des fichiers CSV
+#' JVS <- extract_JVS(dir = dir_path)
+#'
+#' # Export du rapport JVS dans un fichier Excel
+#' write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
+#'
+#' # Export du rapport JVS dans un fichier CSV
+#' write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
+#'
+#' @keywords internal
+#' @name fr-write
+NULL
+#> NULL
+
+#' @title Writing Quality Reports to Files
+#'
+#' @param x An object of class \code{\link{JVS_matrix}},
+#'   \code{\link{QR_matrix}}, or \code{\link{mQR_matrix}} to export.
+#' @param file A \code{character} object containing the path to the file to be
+#'   created.
+#' @param export_dir Path to the directory that will contain the exported files.
+#' @param auto_format Boolean indicating whether to format the output
+#'   (\code{auto_format = TRUE} by default).
+#' @param layout_file Export parameter. By default,
+#'   (\code{layout_file = "ByComponent"}) and an Excel file is exported for
+#'   each component of the quality report matrix (modalities or values matrix),
+#'   where each sheet corresponds to a quality report. To have one file per
+#'   quality report, with each sheet corresponding to the exported component,
+#'   use \code{layout_file = "ByQRMatrix"}. The modality
+#'   \code{layout_file = "AllTogether"} corresponds to creating a file with 2
+#'   sheets per quality report (\code{Values} and \code{Modalities}).
+#' @param overwrite Boolean. Should an existing file be overwritten?
+#'   By default, \code{overwrite = TRUE}.
+#' @param verbose Boolean indicating whether to print additional information.
+#'   Default is `TRUE`.
+#' @param ... Other unused arguments.
+#'
+#' @returns
+#' If \code{x} is of class \code{\link{JVS_matrix}} or
+#' \code{\link{mQR_matrix}}, the function invisibly returns (with
+#' `invisible()`) the object \code{x}.
+#' If \code{x} is of class \code{\link{QR_matrix}}, the function invisibly
+#' returns (with `invisible()`) a workbook object created by
+#' \code{openxlsx::loadWorkbook()} for further manipulation.
+#'
+#' @details
+#' Objects of class \code{\link{JVS_matrix}} can be exported to
+#' CSV or Excel files (depending on the `format` argument).
+#' Objects of class \code{\link{QR_matrix}} and \code{\link{mQR_matrix}} are
+#' only written to Excel files.
+#'
+#' @examples
+#' # Path to the directory containing the demetra_m file and series
+#' dir_path <- system.file(
+#'     "extdata", "WS", "WS_world", "Output", "SAProcessing-1",
+#'     package = "rjd3qr"
+#' )
+#'
+#' # Path to the demetra_m.csv file
+#' demetra_path <- file.path(dir_path, "demetra_m.csv")
+#'
+#' # Extract the quality report from the demetra_m.csv file
+#' QR <- extract_QR(demetra_path)
+#'
+#' # Export the QR to an Excel file
+#' write(x = QR, file = tempfile(fileext = ".xlsx"))
+#'
+#' # Prepare 2 quality reports
+#' QR1 <- compute_score(x = QR, n_contrib_score = 5)
+#' QR2 <- compute_score(
+#'     x = QR,
+#'     score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
+#'                    f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
+#'                    oos_mean = 30, residuals_skewness = 15, m7 = 25)
+#' )
+#' mQR <- mQR_matrix(list(a = QR1, b = QR2))
+#'
+#' # Export the mQR to an Excel file
+#' write(x = mQR, export_dir = tempdir())
+#'
+#' # Extract the JVS report from CSV files
+#' JVS <- extract_JVS(dir = dir_path)
+#'
+#' # Export the JVS report to an Excel file
+#' write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
+#'
+#' # Export the JVS report to a CSV file
+#' write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
+#'
+#' @name write
+#' @seealso [Traduction française][fr-write()]
+#' @export
+write <- function(x, ...) {
+    UseMethod("write", x)
+}
+
+#' @exportS3Method write default
+#' @method write default
+#' @export
+write.default <- function(x, ...) {
+    stop(
+        "A JVS_matrix, QR_matrix or mQR_matrix object is required!",
+        call. = FALSE
+    )
+}
+
+#' @importFrom openxlsx addWorksheet
+#' @importFrom openxlsx createWorkbook
+#' @importFrom openxlsx saveWorkbook
+#' @importFrom openxlsx writeData
+#' @importFrom tools file_ext
+#'
+#' @rdname write
+#' @exportS3Method write QR_matrix
+#' @method write QR_matrix
+#' @export
+write.QR_matrix <- function(
+    x,
+    file,
+    auto_format = TRUE,
+    overwrite = TRUE,
+    ...
+) {
+    ext <- tools::file_ext(file)
+    if (!nzchar(ext)) {
+        file <- paste0(file, ".xslx")
+    } else if (ext != "xlsx") {
+        stop("The format of the file must be .xlsx .", call. = FALSE)
+    }
+
+    wb_qr <- openxlsx::createWorkbook(
+        title = "QR for WS",
+        subject = "Seasonal Adjustment"
+    )
+
+    openxlsx::addWorksheet(wb = wb_qr, sheetName = "Modalities")
+    openxlsx::addWorksheet(wb = wb_qr, sheetName = "Values")
+
+    openxlsx::writeData(
+        wb = wb_qr,
+        sheet = "Modalities",
+        x = x[["modalities"]],
+        headerStyle = if (auto_format) header_style else NULL
+    )
+    openxlsx::writeData(
+        wb = wb_qr,
+        sheet = "Values",
+        x = x[["values"]],
+        headerStyle = if (auto_format) header_style else NULL
+    )
+
+    if (auto_format) {
+        wb_qr <- apply_BQ_style(
+            wb = wb_qr,
+            x = x,
+            values_sheet = "Values",
+            modalities_sheet = "Modalities"
+        )
+    }
+
+    openxlsx::saveWorkbook(wb = wb_qr, file = file, overwrite = overwrite)
+
+    return(invisible(wb_qr))
+}
+
+#' @importFrom utils write.table
+#' @importFrom openxlsx addWorksheet
+#' @importFrom openxlsx createWorkbook
+#' @importFrom openxlsx saveWorkbook
+#' @importFrom openxlsx writeData
+#'
+#' @rdname write
+#' @exportS3Method write JVS_matrix
+#' @method write JVS_matrix
+#' @export
+write.JVS_matrix <- function(
+    x,
+    file = file.path(tempdir(), "JobVacancySurveyQR.csv"),
+    overwrite = TRUE,
+    verbose = TRUE,
+    ...
+) {
+    if (dir.exists(file)) {
+        file <- file.path(file, "JobVacancySurveyQR.csv")
+    } else if (!dir.exists(dirname(path = file))) {
+        dir.create(dirname(path = file), recursive = TRUE)
+    }
+
+    extension <- tools::file_ext(file)
+    if (!nzchar(extension)) {
+        file <- paste0(file, ".csv")
+        extension <- "csv"
+    } else if (!extension %in% c("csv", "xlsx")) {
+        stop(
+            extension,
+            " is not accepted. ",
+            "Only .csv and .xlsx format are accepted.",
+            call. = FALSE
+        )
+    }
+
+    if (file.exists(file) && !overwrite) {
+        if (verbose) {
+            warning(
+                "The file already exists. ",
+                "To overwrite it, use the argument `overwrite = TRUE`.",
+                call. = FALSE
+            )
+        }
+        return(invisible(x))
+    }
+
+    if (verbose) {
+        message("The JVS report will be exported to ", file, ".")
+        if (file.exists(file)) {
+            message("The file already exists and will be overwritten.")
+        }
+    }
+
+    if (extension == "csv") {
+        utils::write.table(
+            x = x,
+            file = file,
+            sep = ";",
+            dec = ",",
+            quote = FALSE,
+            row.names = FALSE,
+            col.names = TRUE,
+            fileEncoding = "utf-8",
+            na = ""
+        )
+    } else if (extension == "xlsx") {
+        wb_jvs <- openxlsx::createWorkbook(title = "JVSQR")
+        openxlsx::addWorksheet(wb = wb_jvs, sheetName = "JVS")
+        openxlsx::writeData(
+            wb = wb_jvs,
+            sheet = "JVS",
+            x = x,
+            headerStyle = header_style
+        )
+
+        openxlsx::saveWorkbook(
+            wb = wb_jvs,
+            file = file,
+            overwrite = overwrite
+        )
+    } else {
+        stop("Wrong extension.", call. = FALSE)
+    }
+    return(invisible(x))
+}
+
+#' @importFrom openxlsx addWorksheet
+#' @importFrom openxlsx createWorkbook
+#' @importFrom openxlsx saveWorkbook
+#' @importFrom openxlsx writeData
+#'
+#' @rdname write
+#' @exportS3Method write mQR_matrix
+#' @method write mQR_matrix
+#' @export
+write.mQR_matrix <- function(
+    x,
+    export_dir,
+    layout_file = c("ByComponent", "ByQRMatrix", "AllTogether"),
+    auto_format = TRUE,
+    overwrite = TRUE,
+    ...
+) {
+    #by component = 1file / component (different QR in same file) = 2 files
+    #by QRMatrix = 1file / QR (different component in same file)
+    #All together = All Qr and components in same file
+
+    layout_file <- match.arg(layout_file)
+    export_dir <- normalizePath(export_dir)
+
+    if (layout_file == "ByQRMatrix") {
+        for (id_qr in seq_along(x)) {
+            qr_matrix <- x[[id_qr]]
+            name <- ifelse(
+                test = is.null(names(x)) || !nzchar(names(x)[id_qr]),
+                yes = paste0("QR_", id_qr),
+                no = names(x)[id_qr]
+            )
+            write(
+                x = qr_matrix,
+                file = file.path(export_dir, paste0(name, ".xlsx")),
+                auto_format = auto_format,
+                overwrite = overwrite
+            )
+        }
+    } else if (layout_file == "ByComponent") {
+        wb_modalities <- openxlsx::createWorkbook(
+            title = "Modalities of the QR",
+            subject = "Seasonal Adjustment"
+        )
+        wb_values <- openxlsx::createWorkbook(
+            title = "Values of the QR",
+            subject = "Seasonal Adjustment"
+        )
+
+        for (id_qr in seq_along(x)) {
+            qr_matrix <- x[[id_qr]]
+            name <- ifelse(
+                test = is.null(names(x)) || !nzchar(names(x)[id_qr]),
+                yes = paste0("QR_", id_qr),
+                no = names(x)[id_qr]
+            )
+
+            openxlsx::addWorksheet(wb = wb_modalities, sheetName = name)
+            openxlsx::addWorksheet(wb = wb_values, sheetName = name)
+
+            openxlsx::writeData(
+                wb = wb_modalities,
+                sheet = name,
+                x = qr_matrix[["modalities"]],
+                headerStyle = if (auto_format) header_style else NULL
+            )
+            openxlsx::writeData(
+                wb = wb_values,
+                sheet = name,
+                x = qr_matrix[["values"]],
+                headerStyle = if (auto_format) header_style else NULL
+            )
+            if (auto_format) {
+                wb_modalities <- apply_BQ_style(
+                    wb = wb_modalities,
+                    x = qr_matrix,
+                    modalities_sheet = name
+                )
+                wb_values <- apply_BQ_style(
+                    wb = wb_values,
+                    x = qr_matrix,
+                    values_sheet = name
+                )
+            }
+        }
+
+        file_modalities <- file.path(export_dir, "modalities.xlsx")
+        file_values <- file.path(export_dir, "values.xlsx")
+
+        openxlsx::saveWorkbook(
+            wb = wb_modalities,
+            file = file_modalities,
+            overwrite = overwrite
+        )
+        openxlsx::saveWorkbook(
+            wb = wb_values,
+            file = file_values,
+            overwrite = overwrite
+        )
+    } else if (layout_file == "AllTogether") {
+        wb_mqr <- openxlsx::createWorkbook(
+            title = "Multiple QR",
+            subject = "Seasonal Adjustment"
+        )
+
+        for (id_qr in seq_along(x)) {
+            qr_matrix <- x[[id_qr]]
+            name <- ifelse(
+                test = is.null(names(x)) ||
+                    !nzchar(names(x)[id_qr]) ||
+                    sum(names(x) == names(x)[id_qr]) > 1L,
+                yes = paste0("QR_", id_qr),
+                no = names(x)[id_qr]
+            )
+
+            openxlsx::addWorksheet(
+                wb = wb_mqr,
+                sheetName = paste0(name, "_modalities")
+            )
+            openxlsx::addWorksheet(
+                wb = wb_mqr,
+                sheetName = paste0(name, "_values")
+            )
+
+            openxlsx::writeData(
+                wb = wb_mqr,
+                sheet = paste0(name, "_modalities"),
+                x = qr_matrix[["modalities"]],
+                headerStyle = if (auto_format) header_style else NULL
+            )
+            openxlsx::writeData(
+                wb = wb_mqr,
+                sheet = paste0(name, "_values"),
+                x = qr_matrix[["values"]],
+                headerStyle = if (auto_format) header_style else NULL
+            )
+            if (auto_format) {
+                wb_mqr <- apply_BQ_style(
+                    wb = wb_mqr,
+                    x = qr_matrix,
+                    modalities_sheet = paste0(name, "_modalities"),
+                    values_sheet = paste0(name, "_values")
+                )
+            }
+        }
+
+        openxlsx::saveWorkbook(
+            wb = wb_mqr,
+            file = file.path(export_dir, "mQR.xlsx"),
+            overwrite = overwrite
+        )
+    }
+
+    return(invisible(x))
+}
+
 #' @importFrom openxlsx createStyle
 header_style <- openxlsx::createStyle(
     fontColour = "#ffffff",
@@ -173,578 +648,4 @@ apply_BQ_style <- function(
     }
 
     return(wb)
-}
-
-#' @title Export des objets QR_matrix dans un fichier Excel
-#'
-#' @description
-#' Permet d'exporter un bilan qualité dans un fichier Excel.
-#'
-#' @param x objet de type \code{\link{QR_matrix}}.
-#' @param file un objet de type \code{character} contenant le chemin menant au
-#' fichier que l'on veut créer
-#' @param auto_format booléen indiquant s'il faut formatter la sortie
-#' (\code{auto_format = TRUE} par défaut).
-#' @param overwrite booléen indiquant s'il faut ré-écrire créer le fichier Excel
-#' s'il existe déjà (\code{overwrite = TRUE} par défaut)
-#' @param ... autres argument non utilisés
-#'
-#' @returns Renvoie de manière invisible (via \code{invisible()}) un classeur
-#' créé par \code{openxlsx::loadWorkbook()} pour une manipulation ultérieure.
-#'
-#' @examples
-#' # Chemin menant au fichier demetra_m.csv
-#' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
-#'     "WS/WS_world/Output/SAProcessing-1",
-#'     "demetra_m.csv"
-#' )
-#'
-#' # Extraire le bilan qualité à partir du fichier demetra_m.csv
-#' QR <- extract_QR(demetra_path)
-#'
-#' # Export du QR dans un fichier Excel
-#' write(x = QR, file = tempfile(fileext = ".xlsx"))
-#'
-#' @keywords internal
-#' @name fr-write.QR_matrix
-NULL
-#> NULL
-
-#' @title Exporting QR_matrix objects in an Excel file
-#'
-#' @description
-#' To export a quality report in an Excel file.
-#'
-#' @param x a \code{\link{QR_matrix}} object.
-#' @param file a \code{character} object with the path to the file to export
-#' @param auto_format logical indicating whether to format the output
-#' (\code{auto_format = TRUE} by default).
-#' @param overwrite logical indicating whether to create an Excel file if it
-#' doesn't exist yet (\code{overwrite = TRUE} by default)
-#' @param ... other unused arguments
-#'
-#' @returns Returns invisibly (via \code{invisible()}) a workbook object
-#' created by \code{openxlsx::loadWorkbook()} for further manipulation.
-#'
-#' @examples
-#' # Path leading to a demetra_m matrix
-#' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
-#'     "WS/WS_world/Output/SAProcessing-1",
-#'     "demetra_m.csv"
-#' )
-#'
-#' # Extract the quality report from the demetra_m file
-#' QR <- extract_QR(demetra_path)
-#'
-#' # Export the Quality Report to an Excel file
-#' write(x = QR, file = tempfile(fileext = ".xlsx"))
-#'
-#' @importFrom openxlsx addWorksheet
-#' @importFrom openxlsx createWorkbook
-#' @importFrom openxlsx saveWorkbook
-#' @importFrom openxlsx writeData
-#' @importFrom tools file_ext
-#'
-#' @family QR_matrix functions
-#' @seealso [Traduction française][fr-write.QR_matrix()]
-#' @exportS3Method write QR_matrix
-#' @method write QR_matrix
-#' @export
-write.QR_matrix <- function(
-    x,
-    file,
-    auto_format = TRUE,
-    overwrite = TRUE,
-    ...
-) {
-    ext <- tools::file_ext(file)
-    if (!nzchar(ext)) {
-        file <- paste0(file, ".xslx")
-    } else if (ext != "xlsx") {
-        stop("The format of the file must be .xlsx .", call. = FALSE)
-    }
-
-    wb_qr <- openxlsx::createWorkbook(
-        title = "QR for WS",
-        subject = "Seasonal Adjustment"
-    )
-
-    openxlsx::addWorksheet(wb = wb_qr, sheetName = "Modalities")
-    openxlsx::addWorksheet(wb = wb_qr, sheetName = "Values")
-
-    openxlsx::writeData(
-        wb = wb_qr,
-        sheet = "Modalities",
-        x = x[["modalities"]],
-        headerStyle = if (auto_format) header_style else NULL
-    )
-    openxlsx::writeData(
-        wb = wb_qr,
-        sheet = "Values",
-        x = x[["values"]],
-        headerStyle = if (auto_format) header_style else NULL
-    )
-
-    if (auto_format) {
-        wb_qr <- apply_BQ_style(
-            wb = wb_qr,
-            x = x,
-            values_sheet = "Values",
-            modalities_sheet = "Modalities"
-        )
-    }
-
-    openxlsx::saveWorkbook(wb = wb_qr, file = file, overwrite = overwrite)
-
-    return(invisible(wb_qr))
-}
-
-#' @title Ecriture de bilans qualités dans des fichiers
-#'
-#' @param x un objet \code{\link{JVS_matrix}}, \code{\link{QR_matrix}} ou
-#'   \code{\link{mQR_matrix}}
-#' @param ... d'autres paramètres utilisées par les fonctions
-#'   \code{\link{write.QR_matrix}} ou \code{\link{write.JVS_matrix}}.
-#'
-#' @returns
-#' Si \code{x} est de classe \code{\link{JVS_matrix}} ou
-#' \code{\link{mQR_matrix}}, la fonction retourne de manière invisible (avec
-#' `invisible()`) l'objet x.
-#' Si \code{x} est de classe \code{\link{QR_matrix}}, la fonction retourne de
-#' manière invisible (avec `invisible()`) l'objet un classeur créé par
-#' \code{openxlsx::loadWorkbook()} pour une manipulation ultérieure.
-#'
-#' @keywords internal
-#' @name fr-write
-NULL
-#> NULL
-
-#' @title Writing QR to files
-#'
-#' @param x a \code{\link{JVS_matrix}}, a \code{\link{QR_matrix}} or
-#'   \code{\link{mQR_matrix}} object.
-#' @param ... other parameters of the function
-#'   \code{\link{write.QR_matrix}} or \code{\link{write.JVS_matrix}}.
-#'
-#' @returns
-#' If \code{x} is a \code{\link{JVS_matrix}} or a \code{\link{mQR_matrix}}, the
-#' function returns invisibly (via \code{invisible(x)}) the same object as
-#' \code{x}.
-#' Else if \code{x} is a \code{\link{QR_matrix}}, the function returns
-#' invisibly (via \code{invisible()}) a workbook object created by
-#' \code{openxlsx::loadWorkbook()} for further manipulation.
-#'
-#' @seealso [Traduction française][fr-write()]
-#' @export
-write <- function(x, ...) {
-    UseMethod("write", x)
-}
-
-#' @exportS3Method write default
-#' @method write default
-#' @export
-write.default <- function(x, ...) {
-    stop(
-        "A JVS_matrix, QR_matrix or mQR_matrix object is required!",
-        call. = FALSE
-    )
-}
-
-#' @title Exporter un bilan qualité JVS
-#'
-#' @description
-#' La fonction permet d'écrire le bilan qualité JVS dans un fichier csv ou
-#' Excel.
-#'
-#' @param x un objet \code{\link{JVS_matrix}} à exporter.
-#' @param format Chaîne de caractère qui défini le format d'output. Les choix
-#'   possibles sont `"csv"` (par défault) ou `"xlsx"`.
-#' @param export_dir Chemin vers le dossier qui contiendra les exports.
-#' @param overwrite Booleen. Est ce qu'un fichier existant doit être ré-écrit ?
-#'   Par défaut, `overwrite = TRUE`.
-#' @param ... autres argument non utilisés
-#'
-#' @returns Renvoie de manière invisible (via \code{invisible(x)}) le même
-#' bilan qualité \code{\link{JVS_matrix}} que \code{x}.
-#'
-#' @examples
-#' # Chemin menant au répertoire contenant le fichier demetra_m et les séries
-#' dir_path <- system.file(
-#'     "extdata", "WS", "WS_world", "Output", "SAProcessing-1",
-#'     package = "JDCruncheR"
-#' )
-#'
-#' # Extraire le rapport JVS à partir des fichiers CSV
-#' JVS <- extract_JVS(dir = dir_path)
-#'
-#' # Export du rapport JVS dans un fichier Excel
-#' write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
-#'
-#' # Export du rapport JVS dans un fichier CSV
-#' write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
-#'
-#' @details
-#' - les fichiers xlsx seront exportées avec le package 'openxlsx'.
-#' - les fichiers csv seront exportées avec le package 'utils'.
-#'
-#' @keywords internal
-#' @name fr-write.JVS_matrix
-NULL
-#> NULL
-
-#' @title Exporting JVS_matrix objects in CSV or Excel files
-#'
-#' @description
-#' To export several quality reports in CSV or Excel files
-#'
-#' @param x a \code{\link{JVS_matrix}} object to export.
-#' @param format output format. One of `"csv"` or `"xlsx"`. The default is
-#'   `"csv"`.
-#' @param export_dir export directory.
-#' @param overwrite logical indicating whether to create a CSV or Excel file if
-#'   it doesn't exist yet (\code{overwrite = TRUE} by default)
-#' @param ... other unused arguments
-#'
-#' @returns Returns invisibly (via \code{invisible(x)}) the same
-#' \code{\link{JVS_matrix}} object as \code{x}.
-#'
-#' @examples
-#' # Path leading to the needed CSV files demetra_m and series
-#' dir_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
-#'     "WS/WS_world/Output/SAProcessing-1"
-#' )
-#'
-#' # Extract the JVS report from the CSV files
-#' JVS <- extract_JVS(dir = dir_path)
-#'
-#' # Export of the JVS report in an Excel file
-#' write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
-#'
-#' # Export of the JVS report in a CSV file
-#' write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
-#'
-#' @details
-#' - xlsx files will be exported with the package 'openxlsx'.
-#' - csv files will be exported with the package 'utils'.
-#'
-#' @importFrom utils write.table
-#' @importFrom openxlsx addWorksheet
-#' @importFrom openxlsx createWorkbook
-#' @importFrom openxlsx saveWorkbook
-#' @importFrom openxlsx writeData
-#'
-#' @family JVS_matrix functions
-#' @exportS3Method write JVS_matrix
-#' @method write JVS_matrix
-#' @seealso [Traduction française][fr-write.JVS_matrix()]
-#' @export
-write.JVS_matrix <- function(
-    x,
-    format = c("csv", "xlsx"),
-    export_dir = tempdir(),
-    overwrite = TRUE,
-    ...
-) {
-    format <- match.arg(format)
-    outfile <- file.path(export_dir, paste0("JobVacancySurveyQR.", format))
-
-    if (file.exists(outfile) && !overwrite) {
-        warning(
-            sprintf("The file '%s' already exists.", outfile),
-            call. = FALSE
-        )
-        return(invisible(x))
-    }
-
-    if (format == "csv") {
-        utils::write.table(
-            x = x,
-            file = outfile,
-            sep = ";",
-            dec = ",",
-            quote = FALSE,
-            row.names = FALSE,
-            col.names = TRUE,
-            fileEncoding = "utf-8",
-            na = ""
-        )
-    } else {
-        wb_jvs <- openxlsx::createWorkbook(title = "JVSQR")
-        openxlsx::addWorksheet(wb = wb_jvs, sheetName = "JVS")
-        openxlsx::writeData(
-            wb = wb_jvs,
-            sheet = "JVS",
-            x = x,
-            headerStyle = header_style
-        )
-
-        openxlsx::saveWorkbook(
-            wb = wb_jvs,
-            file = outfile,
-            overwrite = overwrite
-        )
-    }
-    return(invisible(x))
-}
-
-
-#' @title Export des objets mQR_matrix dans des fichiers Excel
-#'
-#' @description
-#' Permet d'exporter dans des fichiers Excel une liste de bilan qualité
-#'
-#' @param x objet de type \code{\link{mQR_matrix}} à exporter.
-#' @param export_dir dossier d'export des résultats.
-#' @param layout_file paramètre d'export. Par défaut,
-#' (\code{layout_file = "ByComponent"}) et un fichier Excel est exporté par
-#' composante de la matrice bilan qualité (matrice des modalités ou des
-#' valeurs), dont chaque feuille correspond à un bilan qualité. Pour avoir un
-#' fichier par bilan qualité dont chaque feuille correspond à la composante
-#' exportée, utiliser \code{layout_file = "ByQRMatrix"}.
-#' La modalité \code{layout_file = "AllTogether"} correspond à la création d'un
-#' fichier avec 2 feuilles par bilan qualité (\code{Values} et
-#' \code{Modalities}).
-#' @param auto_format booléen indiquant s'il faut formatter la sortie
-#' (\code{auto_format = TRUE} par défaut).
-#' @param overwrite booléen indiquant s'il faut ré-écrire créer le fichier Excel
-#' s'il existe déjà (\code{overwrite = TRUE} par défaut)
-#' @param ... autres argument non utilisés
-#'
-#' @returns Renvoie de manière invisible (via \code{invisible(x)}) le même objet
-#' \code{\link{mQR_matrix}} que \code{x}.
-#'
-#' @examples
-#' # Chemin menant au fichier demetra_m.csv
-#' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
-#'     "WS/WS_world/Output/SAProcessing-1",
-#'     "demetra_m.csv"
-#' )
-#'
-#' # Extraire le bilan qualité à partir du fichier demetra_m.csv
-#' QR <- extract_QR(demetra_path)
-#'
-#' # Calculer le score
-#' QR1 <- compute_score(x = QR, n_contrib_score = 5)
-#' QR2 <- compute_score(
-#'     x = QR,
-#'     score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
-#'                    f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
-#'                    oos_mean = 30, residuals_skewness = 15, m7 = 25)
-#' )
-#' mQR <- mQR_matrix(list(a = QR1, b = QR2))
-#'
-#' # Export du mQR dans un fichier Excel
-#' write(x = mQR, export_dir = tempdir())
-#'
-#' @keywords internal
-#' @name fr-write.mQR_matrix
-NULL
-#> NULL
-
-#' @title Exporting mQR_matrix objects in Excel files
-#'
-#' @description
-#' To export several quality reports in Excel files
-#'
-#' @param x a \code{\link{mQR_matrix}} object to export.
-#' @param export_dir export directory.
-#' @param layout_file export parameter. By default, (\code{layout_file =
-#'   "ByComponent"}) and an Excel file is exported for each part of the quality
-#'   report matrix (modalities and values matrices). To group both modalities
-#'   and values reports/sheets into a single Excel file, use the option
-#'   \code{layout_file = "ByQRMatrix"}. With `AllTogether`, all the QR and
-#'   components are in the same file.
-#' @param auto_format logical indicating whether to format the output
-#'   (\code{auto_format = TRUE} by default).
-#' @param overwrite logical indicating whether to create an Excel file if it
-#'   doesn't exist yet (\code{overwrite = TRUE} by default)
-#' @param ... other unused arguments
-#'
-#' @returns Returns invisibly (via \code{invisible(x)}) the same
-#' \code{\link{mQR_matrix}} object as \code{x}.
-#'
-#' @examples
-#' # Path leading to the demetra_m.csv file
-#' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
-#'     "WS/WS_world/Output/SAProcessing-1",
-#'     "demetra_m.csv"
-#' )
-#'
-#' # Extraction of the QR from the demetra_m.csv file
-#' QR <- extract_QR(demetra_path)
-#'
-#' # Compute the scores
-#' QR1 <- compute_score(x = QR, n_contrib_score = 5)
-#' QR2 <- compute_score(
-#'     x = QR,
-#'     score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
-#'                    f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
-#'                    oos_mean = 30, residuals_skewness = 15, m7 = 25)
-#' )
-#' mQR <- mQR_matrix(list(a = QR1, b = QR2))
-#'
-#' # Export the Multiple Quality Report to an Excel file
-#' write(x = mQR, export_dir = tempdir())
-#'
-#'
-#' @importFrom openxlsx addWorksheet
-#' @importFrom openxlsx createWorkbook
-#' @importFrom openxlsx saveWorkbook
-#' @importFrom openxlsx writeData
-#'
-#' @family QR_matrix functions
-#' @seealso [Traduction française][fr-write.mQR_matrix()]
-#' @exportS3Method write mQR_matrix
-#' @method write mQR_matrix
-#' @export
-write.mQR_matrix <- function(
-    x,
-    export_dir,
-    layout_file = c("ByComponent", "ByQRMatrix", "AllTogether"),
-    auto_format = TRUE,
-    overwrite = TRUE,
-    ...
-) {
-    #by component = 1file / component (different QR in same file) = 2 files
-    #by QRMatrix = 1file / QR (different component in same file)
-    #All together = All Qr and components in same file
-
-    layout_file <- match.arg(layout_file)
-    export_dir <- normalizePath(export_dir)
-
-    if (layout_file == "ByQRMatrix") {
-        for (id_qr in seq_along(x)) {
-            qr_matrix <- x[[id_qr]]
-            name <- ifelse(
-                test = is.null(names(x)) || !nzchar(names(x)[id_qr]),
-                yes = paste0("QR_", id_qr),
-                no = names(x)[id_qr]
-            )
-            write(
-                x = qr_matrix,
-                file = file.path(export_dir, paste0(name, ".xlsx")),
-                auto_format = auto_format,
-                overwrite = overwrite
-            )
-        }
-    } else if (layout_file == "ByComponent") {
-        wb_modalities <- openxlsx::createWorkbook(
-            title = "Modalities of the QR",
-            subject = "Seasonal Adjustment"
-        )
-        wb_values <- openxlsx::createWorkbook(
-            title = "Values of the QR",
-            subject = "Seasonal Adjustment"
-        )
-
-        for (id_qr in seq_along(x)) {
-            qr_matrix <- x[[id_qr]]
-            name <- ifelse(
-                test = is.null(names(x)) || !nzchar(names(x)[id_qr]),
-                yes = paste0("QR_", id_qr),
-                no = names(x)[id_qr]
-            )
-
-            openxlsx::addWorksheet(wb = wb_modalities, sheetName = name)
-            openxlsx::addWorksheet(wb = wb_values, sheetName = name)
-
-            openxlsx::writeData(
-                wb = wb_modalities,
-                sheet = name,
-                x = qr_matrix[["modalities"]],
-                headerStyle = if (auto_format) header_style else NULL
-            )
-            openxlsx::writeData(
-                wb = wb_values,
-                sheet = name,
-                x = qr_matrix[["values"]],
-                headerStyle = if (auto_format) header_style else NULL
-            )
-            if (auto_format) {
-                wb_modalities <- apply_BQ_style(
-                    wb = wb_modalities,
-                    x = qr_matrix,
-                    modalities_sheet = name
-                )
-                wb_values <- apply_BQ_style(
-                    wb = wb_values,
-                    x = qr_matrix,
-                    values_sheet = name
-                )
-            }
-        }
-
-        file_modalities <- file.path(export_dir, "modalities.xlsx")
-        file_values <- file.path(export_dir, "values.xlsx")
-
-        openxlsx::saveWorkbook(
-            wb = wb_modalities,
-            file = file_modalities,
-            overwrite = overwrite
-        )
-        openxlsx::saveWorkbook(
-            wb = wb_values,
-            file = file_values,
-            overwrite = overwrite
-        )
-    } else if (layout_file == "AllTogether") {
-        wb_mqr <- openxlsx::createWorkbook(
-            title = "Multiple QR",
-            subject = "Seasonal Adjustment"
-        )
-
-        for (id_qr in seq_along(x)) {
-            qr_matrix <- x[[id_qr]]
-            name <- ifelse(
-                test = is.null(names(x)) ||
-                    !nzchar(names(x)[id_qr]) ||
-                    sum(names(x) == names(x)[id_qr]) > 1L,
-                yes = paste0("QR_", id_qr),
-                no = names(x)[id_qr]
-            )
-
-            openxlsx::addWorksheet(
-                wb = wb_mqr,
-                sheetName = paste0(name, "_modalities")
-            )
-            openxlsx::addWorksheet(
-                wb = wb_mqr,
-                sheetName = paste0(name, "_values")
-            )
-
-            openxlsx::writeData(
-                wb = wb_mqr,
-                sheet = paste0(name, "_modalities"),
-                x = qr_matrix[["modalities"]],
-                headerStyle = if (auto_format) header_style else NULL
-            )
-            openxlsx::writeData(
-                wb = wb_mqr,
-                sheet = paste0(name, "_values"),
-                x = qr_matrix[["values"]],
-                headerStyle = if (auto_format) header_style else NULL
-            )
-            if (auto_format) {
-                wb_mqr <- apply_BQ_style(
-                    wb = wb_mqr,
-                    x = qr_matrix,
-                    modalities_sheet = paste0(name, "_modalities"),
-                    values_sheet = paste0(name, "_values")
-                )
-            }
-        }
-
-        openxlsx::saveWorkbook(
-            wb = wb_mqr,
-            file = file.path(export_dir, "mQR.xlsx"),
-            overwrite = overwrite
-        )
-    }
-
-    return(invisible(x))
 }

@@ -18,7 +18,7 @@
   na.rm = TRUE,
   n_contrib_score = NULL,
   conditional_indicator = NULL,
-  thresholds = getOption("jdc_thresholds"),
+  thresholds = getOption("rjd3qr.thresholds"),
   ...
 )
 
@@ -121,7 +121,7 @@ independancy test ("residuals_independency") or the homoscedasticity test
 \examples{
 # Path of matrix demetra_m
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )

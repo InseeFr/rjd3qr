@@ -4,11 +4,34 @@
 \alias{fr-write}
 \title{Ecriture de bilans qualités dans des fichiers}
 \arguments{
-\item{x}{un objet \code{\link{JVS_matrix}}, \code{\link{QR_matrix}} ou
-\code{\link{mQR_matrix}}}
+\item{x}{Objet de classe \code{\link{JVS_matrix}}, \code{\link{QR_matrix}} ou
+\code{\link{mQR_matrix}} à exporter}
 
-\item{...}{d'autres paramètres utilisées par les fonctions
-\code{\link{write.QR_matrix}} ou \code{\link{write.JVS_matrix}}.}
+\item{file}{un objet de type \code{character} contenant le chemin menant au
+fichier que l'on veut créer}
+
+\item{export_dir}{Chemin vers le dossier qui contiendra les exports.}
+
+\item{auto_format}{booléen indiquant s'il faut formatter la sortie
+(\code{auto_format = TRUE} par défaut).}
+
+\item{layout_file}{paramètre d'export. Par défaut,
+(\code{layout_file = "ByComponent"}) et un fichier Excel est exporté par
+composante de la matrice bilan qualité (matrice des modalités ou des
+valeurs), dont chaque feuille correspond à un bilan qualité. Pour avoir un
+fichier par bilan qualité dont chaque feuille correspond à la composante
+exportée, utiliser \code{layout_file = "ByQRMatrix"}.
+La modalité \code{layout_file = "AllTogether"} correspond à la création d'un
+fichier avec 2 feuilles par bilan qualité (\code{Values} et
+\code{Modalities}).}
+
+\item{overwrite}{Booléen. Est ce qu'un fichier existant doit être ré-écrit ?
+Par défaut, \code{overwrite = TRUE}.}
+
+\item{verbose}{Booleen. Est ce que des informations supplémentaires doivent
+être affichées ? Valeur par défaut, \code{TRUE}.}
+
+\item{...}{Autre argument non utilisé.}
 }
 \value{
 Si \code{x} est de classe \code{\link{JVS_matrix}} ou
@@ -20,5 +43,50 @@ manière invisible (avec \code{invisible()}) l'objet un classeur créé par
 }
 \description{
 Ecriture de bilans qualités dans des fichiers
+}
+\details{
+Les objets de classe \code{\link{JVS_matrix}} peuvent être exportés dans des
+fichiers csv ou Excel (selon l'argument \code{format}).
+Les objets de classe \code{\link{QR_matrix}} et \code{\link{mQR_matrix}} ne
+sont écrits que dans des fichiers Excel.
+}
+\examples{
+# Chemin menant au répertoire contenant le fichier demetra_m et les séries
+dir_path <- system.file(
+    "extdata", "WS", "WS_world", "Output", "SAProcessing-1",
+    package = "rjd3qr"
+)
+
+# Chemin menant au fichier demetra_m.csv
+demetra_path <- file.path(dir_path, "demetra_m.csv")
+
+# Extraire le bilan qualité à partir du fichier demetra_m.csv
+QR <- extract_QR(demetra_path)
+
+# Export du QR dans un fichier Excel
+write(x = QR, file = tempfile(fileext = ".xlsx"))
+
+# Préparation de 2 bilans qualités
+QR1 <- compute_score(x = QR, n_contrib_score = 5)
+QR2 <- compute_score(
+    x = QR,
+    score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
+                   f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
+                   oos_mean = 30, residuals_skewness = 15, m7 = 25)
+)
+mQR <- mQR_matrix(list(a = QR1, b = QR2))
+
+# Export du mQR dans un fichier Excel
+write(x = mQR, export_dir = tempdir())
+
+# Extraire le rapport JVS à partir des fichiers CSV
+JVS <- extract_JVS(dir = dir_path)
+
+# Export du rapport JVS dans un fichier Excel
+write(JVS, format = "xlsx", export_dir = tempdir(), overwrite = TRUE)
+
+# Export du rapport JVS dans un fichier CSV
+write(JVS, format = "csv", export_dir = tempdir(), overwrite = TRUE)
+
 }
 \keyword{internal}

@@ -20,6 +20,8 @@ Obtenir tous les seuils (par défaut)
 }
 \details{
 Si \code{test_name} est manquant, tous les seuils seront retournés.
+
+Les seuils sont lus depuis l'option \code{rjd3qr.thresholds}.
 }
 \examples{
 

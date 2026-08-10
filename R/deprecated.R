@@ -11,7 +11,7 @@
 #' @examples
 #' # Path leading to a demetra_m matrix
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -35,7 +35,7 @@
 #' write(x = QR, file = tempfile(fileext = ".xlsx"))
 #' write(x = mQR, export_dir = tempdir())
 #'
-#' @name deprecated-JDCruncheR
+#' @name deprecated-rjd3qr
 #' @export
 export_xlsx <- function(x, ...) {
     .Deprecated("write")

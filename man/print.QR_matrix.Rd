@@ -32,6 +32,33 @@ the \code{print} method prints a \code{\link{mQR_matrix}} or
 \description{
 To print information on a QR_matrix or mQR_matrix object.
 }
+\examples{
+# Path of matrix demetra_m
+demetra_path <- file.path(
+    system.file("extdata", package = "rjd3qr"),
+    "WS/WS_world/Output/SAProcessing-1",
+    "demetra_m.csv"
+)
+
+# Extract the quality report from the demetra_m file
+QR <- extract_QR(file = demetra_path)
+
+print(QR)
+
+
+# Prepare 2 quality reports
+QR1 <- compute_score(x = QR, n_contrib_score = 5)
+QR2 <- compute_score(
+    x = QR,
+    score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
+                   f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
+                   oos_mean = 30, residuals_skewness = 15, m7 = 25)
+)
+mQR <- mQR_matrix(list(a = QR1, b = QR2))
+
+print(mQR)
+
+}
 \seealso{
 \link[=fr-print.QR_matrix]{Traduction française}
 
@@ -40,8 +67,6 @@ Other QR_matrix functions:
 \code{\link[=extract_QR]{extract_QR()}},
 \code{\link[=rbind.QR_matrix]{rbind.QR_matrix()}},
 \code{\link{sort}},
-\code{\link[=weighted_score]{weighted_score()}},
-\code{\link[=write.QR_matrix]{write.QR_matrix()}},
-\code{\link[=write.mQR_matrix]{write.mQR_matrix()}}
+\code{\link[=weighted_score]{weighted_score()}}
 }
 \concept{QR_matrix functions}

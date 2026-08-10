@@ -1,6 +1,8 @@
 # Changelog
 
-## rjd3qr 0.4.2.9000
+## rjd3qr 0.4.2
+
+CRAN release: 2026-08-07
 
 All notable changes to this project will be documented in this file.
 
@@ -12,6 +14,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [0.4.2](https://github.com/InseeFr/rjd3qr/compare/v0.4.1...v0.4.2) - 2026-08-10
 
+### [0.4.1](https://github.com/InseeFr/rjd3qr/compare/v0.4.0...v0.4.1) - 2026-07-29
+
 #### Changed
 
 - The `write` method for `JVS_matrix` object now works with a `file`
@@ -20,13 +24,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - {JDCruncheR} becomes {rjd3qr}
 - The option `jdc_thresholds` is renamed `rjd3qr.thresholds` to avoid
   conflict with other packages.
-- In JVS, the irregular standard deviation is now based on the
-  computation sa - t
-
-### [0.4.1](https://github.com/InseeFr/rjd3qr/compare/v0.4.0...v0.4.1) - 2026-07-29
-
-#### Changed
-
 - In JVS, Trend filters and D7 filters are now displayed starting with a
   “H”
 - In JVS, Leap year and Easter variables are displayed as “Yes” or “No”
@@ -36,7 +33,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - In JVS, the final series are no longer used and replaced by the
   decomposition series before applying the effects of preadjustment
 - In JVS, the irregular standard deviation is now based on the
-  computation sa_cmp - t_cmp
+  computation sa - t
 - In example data, we updated the generated output csv files to match
   JVS and QR creation
 - The column follows now the same order as the plug-in

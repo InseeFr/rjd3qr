@@ -38,6 +38,32 @@ NULL
 #' \code{\link{mQR_matrix}} object and returns it invisibly (via
 #' \code{invisible(x)}).
 #'
+#' @examples
+#' # Path of matrix demetra_m
+#' demetra_path <- file.path(
+#'     system.file("extdata", package = "rjd3qr"),
+#'     "WS/WS_world/Output/SAProcessing-1",
+#'     "demetra_m.csv"
+#' )
+#'
+#' # Extract the quality report from the demetra_m file
+#' QR <- extract_QR(file = demetra_path)
+#'
+#' print(QR)
+#'
+#'
+#' # Prepare 2 quality reports
+#' QR1 <- compute_score(x = QR, n_contrib_score = 5)
+#' QR2 <- compute_score(
+#'     x = QR,
+#'     score_pond = c(qs_residual_s_on_sa = 5, qs_residual_sa_on_i = 30,
+#'                    f_residual_td_on_sa = 10, f_residual_td_on_i = 40,
+#'                    oos_mean = 30, residuals_skewness = 15, m7 = 25)
+#' )
+#' mQR <- mQR_matrix(list(a = QR1, b = QR2))
+#'
+#' print(mQR)
+#'
 #' @importFrom stats sd
 #'
 #' @encoding UTF-8
@@ -47,18 +73,22 @@ NULL
 #' @name print.QR_matrix
 #' @seealso [Traduction française][fr-print.QR_matrix()]
 #' @export
-print.QR_matrix <- function(x,
-                            print_variables = TRUE,
-                            print_score_formula = TRUE,
-                            ...) {
+print.QR_matrix <- function(
+    x,
+    print_variables = TRUE,
+    print_score_formula = TRUE,
+    ...
+) {
     nb_var <- nrow(x[["modalities"]])
     nb_var_modalities <- ncol(x[["modalities"]])
     nb_var_values <- ncol(x[["values"]])
 
-    if (is.null(nb_var)
-        || is.null(nb_var_modalities)
-        || is.null(nb_var_values)
-        || nb_var * nb_var_modalities * nb_var_values == 0L) {
+    if (
+        is.null(nb_var) ||
+            is.null(nb_var_modalities) ||
+            is.null(nb_var_values) ||
+            nb_var * nb_var_modalities * nb_var_values == 0L
+    ) {
         cat("The quality report matrix is empty")
         return(invisible(x))
     }
@@ -113,12 +143,13 @@ print.QR_matrix <- function(x,
         }
         cat("\n")
         if (length(names_var_values_sup) > 1L) {
+            pat <- ngettext(
+                length(names_var_values_sup),
+                "There's no additionnal variable in the values matrix",
+                "The variables exclusively found in the values matrix are:\n%s"
+            )
             cat(sprintf(
-                ngettext(
-                    length(names_var_values_sup),
-                    "There's no additionnal variable in the values matrix",
-                    "The variables exclusively found in the values matrix are:\n%s"
-                ),
+                pat,
                 names_var_values_sup
             ))
         }
@@ -228,11 +259,11 @@ print.mQR_matrix <- function(x, score_statistics = TRUE, ...) {
             }
 
             if (is.null(score_value)) {
-                cat(sprintf(
-                    "There is no calculated score for the quality report n.%d%s",
+                cat(
+                    "There is no calculated score for the quality report n.",
                     i,
                     bq_name
-                ))
+                )
             } else {
                 cat(sprintf(
                     "The quality report n.%d%s has an average score of %g\n",
@@ -245,7 +276,6 @@ print.mQR_matrix <- function(x, score_statistics = TRUE, ...) {
                     min(score_value, na.rm = TRUE),
                     max(score_value, na.rm = TRUE)
                 ))
-
             }
         }
     }

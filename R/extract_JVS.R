@@ -7,9 +7,9 @@
 #' diagnostics et les séries de sortie.
 #'
 #' @param dir Chemin vers le dossier contenant les fichiers
-#'   demetra_m.csv, series_decomposition_y_cmp.csv,
-#'   series_decomposition_sa_cmp.csv, series_decomposition_s_cmp.csv et
-#'   series_decomposition_t_cmp.csv.
+#'   demetra_m.csv, series_y.csv,
+#'   series_sa.csv, series_s.csv et
+#'   series_t.csv.
 #' @param demetra_m Un data.frame contenant la matrice de diagnostics.
 #'   Si manquant ou `NULL`, le fichier est recherché dans `dir`.
 #' @param y Un data.frame contenant la série initiale.
@@ -34,7 +34,7 @@
 #' \code{\link[rjwsacruncher]{cruncher_and_param}}).
 #'
 #' Pour plus d'informations sur la génération des sorties, voir la vignette :
-#' `browseVignettes(package = "JDCruncheR")`
+#' `browseVignettes(package = "rjd3qr")`
 #'
 #' Si les séries sont fournies, elles doivent être des \code{data.frame} avec
 #' les dates dans la première colonne et les valeurs des séries dans les autres
@@ -57,7 +57,7 @@
 #' dir_path <- system.file(
 #'     "extdata",
 #'     "WS/WS_world/Output/SAProcessing-1",
-#'     package = "JDCruncheR"
+#'     package = "rjd3qr"
 #' )
 #'
 #' # Extraction du rapport JVS :
@@ -76,8 +76,8 @@ NULL
 #' CSV files containing the diagnostics matrix and the output series.
 #'
 #' @param dir path to the directory containing the demetra_m.csv,
-#'   series_decomposition_y_cmp.csv, series_decomposition_sa_cmp.csv,
-#'   series_decomposition_s_cmp.csv and series_decomposition_t_cmp.csv files.
+#'   series_y.csv, series_sa.csv,
+#'   series_s.csv and series_t.csv files.
 #' @param demetra_m data.frame containing the diagnostics matrix.
 #'   If missing or `NULL`, the file is searched for in `dir`.
 #' @param y data.frame containing the initial series.
@@ -101,7 +101,7 @@ NULL
 #' \code{\link[rjwsacruncher]{cruncher_and_param}}).
 #'
 #' For more information about the generation of the output, see the vignette:
-#' `browseVignettes(package = "JDCruncheR")`
+#' `browseVignettes(package = "rjd3qr")`
 #'
 #' If the series are provided, they have to be `data.frame` with the dates in
 #' the first column and the values of the series in the other columns.
@@ -120,11 +120,10 @@ NULL
 #'
 #' @examples
 #' # Path leading to the directory containing the needed files
-#'
 #' dir_path <- system.file(
 #'     "extdata",
 #'     "WS/WS_world/Output/SAProcessing-1",
-#'     package = "JDCruncheR"
+#'     package = "rjd3qr"
 #' )
 #'
 #' # Extract the JVS report from the directory
@@ -155,7 +154,7 @@ extract_JVS <- function(
         dir = dir,
         x = y,
         reading_fun = read_series,
-        name = "y_cmp",
+        name = "y",
         ...
     )
 
@@ -164,7 +163,7 @@ extract_JVS <- function(
         dir = dir,
         x = sa,
         reading_fun = read_series,
-        name = "sa_cmp",
+        name = "sa",
         ...
     )
 
@@ -173,7 +172,7 @@ extract_JVS <- function(
         dir = dir,
         x = s,
         reading_fun = read_series,
-        name = "s_cmp",
+        name = "s",
         ...
     )
 
@@ -182,7 +181,7 @@ extract_JVS <- function(
         dir = dir,
         x = t,
         reading_fun = read_series,
-        name = "t_cmp",
+        name = "t",
         ...
     )
 
@@ -214,8 +213,8 @@ extract_JVS <- function(
     d7_trend_filter <- extractStage2TrendFilter(demetra_m)
     seas_filter <- extractSeasonalFilter(demetra_m)
     quality <- extractQuality(demetra_m)
-    auto_corr <- extractAutoCorr(demetra_m)
-    normal_test <- extractNormal(demetra_m)
+    auto_corr <- extractAutoCorr(sa)
+    normal_test <- extractNormal(demetra_m, sa)
     standard_deviation <- extractStandardDeviation(sa - t)
     max_adj <- extractMaxAdj_allseries(y, sa)
 

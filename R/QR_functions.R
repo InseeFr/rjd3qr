@@ -1,18 +1,3 @@
-recode_vec <- function(x, recode_variable) {
-    if (is.factor(x)) {
-        return(recode_vec(
-            x = as.character(x),
-            recode_variable = recode_variable
-        ))
-    }
-    for (index in seq_along(recode_variable)) {
-        values_from <- names(recode_variable)[index]
-        values_to <- recode_variable[index]
-        x[x == values_from] <- values_to
-    }
-    return(x)
-}
-
 #' @title Calcul d'un score global
 #'
 #' @description
@@ -105,7 +90,7 @@ recode_vec <- function(x, recode_variable) {
 #' @examples
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -211,7 +196,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -252,7 +237,7 @@ compute_score.QR_matrix <- function(
     na.rm = TRUE,
     n_contrib_score = NULL,
     conditional_indicator = NULL,
-    thresholds = getOption("jdc_thresholds"),
+    thresholds = getOption("rjd3qr.thresholds"),
     ...
 ) {
     if (!all(names(score_pond) %in% colnames(x[["modalities"]]))) {
@@ -441,7 +426,7 @@ compute_score.default <- function(x, ...) {
 #'
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -477,7 +462,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -582,7 +567,7 @@ weighted_score.mQR_matrix <- function(x, pond = 1L) {
 #'
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -620,7 +605,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -708,7 +693,7 @@ sort.mQR_matrix <- function(
 #'
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -757,7 +742,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -904,7 +889,7 @@ extract_score.mQR_matrix <- function(
 #' @examples
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -978,7 +963,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -1210,7 +1195,7 @@ add_indicator.mQR_matrix <- function(x, indicator, variable_name, ...) {
 #' @examples
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -1252,7 +1237,7 @@ NULL
 #' @examples
 #' # Path to the demetra_m.csv file
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -1370,7 +1355,7 @@ recode_indicator_num.mQR_matrix <- function(
 #' @examples
 #' # Chemin menant au fichier demetra_m.csv
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -1412,7 +1397,7 @@ NULL
 #' @examples
 #' # Path of matrix demetra_m
 #' demetra_path <- file.path(
-#'     system.file("extdata", package = "JDCruncheR"),
+#'     system.file("extdata", package = "rjd3qr"),
 #'     "WS/WS_world/Output/SAProcessing-1",
 #'     "demetra_m.csv"
 #' )
@@ -1445,7 +1430,8 @@ rbind.QR_matrix <- function(..., check_formula = TRUE) {
             FUN = function(x) {
                 if (!is.QR_matrix(x)) {
                     stop(
-                        "All arguments of this function must be QR_matrix objects",
+                        "All arguments of this function must be",
+                        " QR_matrix objects",
                         call. = FALSE
                     )
                 }
@@ -1454,8 +1440,10 @@ rbind.QR_matrix <- function(..., check_formula = TRUE) {
             FUN.VALUE = character(1L)
         )
         list_formula_unique <- unique(list_formula)
-        if (length(list_formula) != length(list_QR_matrix)
-            || length(list_formula_unique) != 1L) {
+        if (
+            length(list_formula) != length(list_QR_matrix) ||
+                length(list_formula_unique) != 1L
+        ) {
             stop(
                 "All QR_matrices must have the same score formulas.",
                 call. = FALSE
@@ -1492,4 +1480,19 @@ rbind.QR_matrix <- function(..., check_formula = TRUE) {
         score_formula = score_formula
     )
     return(QR)
+}
+
+recode_vec <- function(x, recode_variable) {
+    if (is.factor(x)) {
+        return(recode_vec(
+            x = as.character(x),
+            recode_variable = recode_variable
+        ))
+    }
+    for (index in seq_along(recode_variable)) {
+        values_from <- names(recode_variable)[index]
+        values_to <- recode_variable[index]
+        x[x == values_from] <- values_to
+    }
+    return(x)
 }

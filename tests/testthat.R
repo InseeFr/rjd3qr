@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library("testthat") # nolint
-library("JDCruncheR") # nolint
+library("rjd3qr") # nolint
 
-test_check("JDCruncheR")
+test_check("rjd3qr")

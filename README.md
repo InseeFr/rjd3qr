@@ -1,47 +1,47 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# **{JDCruncheR}** <a href="https://inseefr.github.io/rjd3qr/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
+# **{rjd3qr}** <a href="https://inseefr.github.io/rjd3qr/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
 
 <!-- badges: start -->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/JDCruncheR)](https://cran.r-project.org/package=JDCruncheR)
 [![Linting
-code](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yaml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yaml)
-[![R-CMD-check](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yaml)
+code](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/lint.yml)
+[![R-CMD-check](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/InseeFr/rjd3qr/actions/workflows/R-CMD-check.yml)
 <!-- badges: end -->
 
-<div align="center">
+<div data-align="center">
 
 ## [🇫🇷 README en français](#présentation) \| [🇬🇧 README in english](#overview)
 
-<div align="left">
+<div data-align="left">
 
 ### Présentation
 
-Le but premier du package **{JDCruncheR}** est de fournir un accès
-rapide et facile au cruncher (`JWSACruncher`) depuis R. Le cruncher est
-un outil de mise à jour des workspaces de JDemetra+ sans avoir à ouvrir
-la GUI (Graphical User Interface). La dernière version peut être
-téléchargée ici : <https://github.com/jdemetra/jwsacruncher/releases>.
-Pour plus d’information, vous pouvez visiter la page
+Le but premier du package **{rjd3qr}** est de fournir un accès rapide et
+facile au cruncher (`JWSACruncher`) depuis R. Le cruncher est un outil
+de mise à jour des workspaces de JDemetra+ sans avoir à ouvrir la GUI
+(Graphical User Interface). La dernière version peut être téléchargée
+ici : <https://github.com/jdemetra/jwsacruncher/releases>. Pour plus
+d’information, vous pouvez visiter la page
 [wiki](https://github.com/jdemetra/jwsacruncher/wiki).
 
-Avec **{JDCruncheR}**, vous pouvez aussi générer des *bilans qualité*
-utilisant l’output du cruncher. Ce bilan est un résumé des diagnostics
+Avec **{rjd3qr}**, vous pouvez aussi générer des *bilans qualité*
+utilisant l’output du cruncher. Ce bilan est un résumé des diagnostiques
 de la désaisonnalisation. Il peut être utilisé pour repérer les séries
 les plus problématiques qui nécessitent une analyse plus fine. Cela est
 très utile lorsqu’on a beaucoup de séries à désaisonnaliser.
 
 ### Installation
 
-**🎉 {JDCruncheR} est maintenant disponible sur le CRAN ! 🎉**
+**🎉 {rjd3qr} est maintenant disponible sur le CRAN ! 🎉**
 
 Pour installer, il suffit de lancer la ligne de code suivante :
 
 ``` r
-install.packages("JDCruncheR")
+install.packages("rjd3qr")
 ```
 
 Pour obtenir la version en cours de développement depuis GitHub :
@@ -59,13 +59,18 @@ remotes::install_github("InseeFr/rjd3qr")
 #### Chargement du package
 
 ``` r
-library("JDCruncheR")
+library("rjd3qr")
+#> 
+#> Attaching package: 'rjd3qr'
+#> The following object is masked from 'package:base':
+#> 
+#>     write
 ```
 
 #### Changer les seuils des tests statistiques
 
 Les seuils des tests du bilan qualité sont personnalisables. Pour cela,
-il faut modifier l’option `"jdc_thresholds"`.
+il faut modifier l’option `"rjd3qr.thresholds"`.
 
 Pour récupérer les valeurs des tests par défault, il faut appeler la
 fonction `get_thresholds()` :
@@ -204,15 +209,25 @@ On peut générer un bilan qualité :
 
 ``` r
 BQ <- extract_QR(x = demetra_m)
+#> Multiple column found for extraction of m-statistics.q
+#> First column selected
 print(BQ$modalities)
 #>   series residuals_homoskedasticity residuals_skewness residuals_kurtosis
-#> 1 France                       Good               Good               Good
-#> 2  Spain                        Bad                Bad                Bad
+#> 1 France                  Uncertain               Good               Good
+#> 2  Spain                       Good                Bad                Bad
 #> 3 Greece                        Bad                Bad                Bad
-#>   oos_mean oos_mse   m7    q q_m2 pct_outliers
-#> 1     Good    <NA> Good Good  Bad         <NA>
-#> 2     Good    <NA> Good  Bad  Bad         <NA>
-#> 3     Good    <NA> Good  Bad Good         <NA>
+#>   residuals_normality residuals_independency qs_residual_s_on_sa
+#> 1                <NA>                   <NA>                <NA>
+#> 2                <NA>                   <NA>                <NA>
+#> 3                <NA>                   <NA>                <NA>
+#>   f_residual_s_on_sa qs_residual_sa_on_i f_residual_sa_on_i f_residual_td_on_sa
+#> 1               <NA>                <NA>               <NA>                <NA>
+#> 2               <NA>                <NA>               <NA>                <NA>
+#> 3               <NA>                <NA>               <NA>                <NA>
+#>   f_residual_td_on_i oos_mean oos_mse   q q_m2   m7 pct_outliers
+#> 1               <NA>     Good    <NA> Bad  Bad Good         <NA>
+#> 2               <NA>     Good    <NA> Bad  Bad Good         <NA>
+#> 3               <NA>     Good    <NA> Bad Good Good         <NA>
 ```
 
 #### Calculer un score
@@ -234,9 +249,9 @@ BQ_score <- compute_score(
 )
 extract_score(x = BQ_score)
 #>   series score
-#> 1 France    60
-#> 2  Spain   110
-#> 3 Greece   100
+#> 1 France   5.5
+#> 2  Spain  25.0
+#> 3 Greece  25.0
 ```
 
 #### Exporter un bilan qualité
@@ -247,7 +262,7 @@ Enfin il est possible d’exporter un bilan qualité via la fonction
 ### Autres informations
 
 Pour plus d’informations sur l’installation et la configuration du
-package **{JDCruncheR}**, vous pouvez visiter la page
+package **{rjd3qr}**, vous pouvez visiter la page
 [wiki](https://github.com/jdemetra/jwsacruncher/wiki)
 
 Pour une description plus complète des packages R pour JDemetra+ voir le
@@ -256,29 +271,28 @@ désaisonnalisation](https://www.insee.fr/fr/statistiques/5019786)
 
 ### Overview
 
-The primary objective of the **{JDCruncheR}** package is to provide a
-quick and easy access to the JDemetra+ cruncher (`JWSACruncher`) from R.
-The cruncher is a tool for updating JDemetra+ workspaces, without having
-to open the graphical user interface. The latest version can be
-downloaded here: <https://github.com/jdemetra/jwsacruncher/releases>.
-For more information, please refer to the [wiki
+The primary objective of the **{rjd3qr}** package is to provide a quick
+and easy access to the JDemetra+ cruncher (`JWSACruncher`) from R. The
+cruncher is a tool for updating JDemetra+ workspaces, without having to
+open the graphical user interface. The latest version can be downloaded
+here: <https://github.com/jdemetra/jwsacruncher/releases>. For more
+information, please refer to the [wiki
 page](https://github.com/jdemetra/jwsacruncher/wiki).
 
-With **{JDCruncheR}**, you can also generate a *quality report* based on
-the cruncher’s output. This report is a formatted summary of the
-seasonal adjustment process master diagnostics and parameters. It can be
-used to spot the most problematic series which will require a finer
-analysis. This is most useful when dealing with a large number of
-series.
+With **{rjd3qr}**, you can also generate a *quality report* based on the
+cruncher’s output. This report is a formatted summary of the seasonal
+adjustment process master diagnostics and parameters. It can be used to
+spot the most problematic series which will require a finer analysis.
+This is most useful when dealing with a large number of series.
 
 ### Installation
 
-**🎉 {JDCruncheR} is now available on CRAN! 🎉**
+**🎉 {rjd3qr} is now available on CRAN! 🎉**
 
 To install it, you have to launch the following command line:
 
 ``` r
-install.packages("JDCruncheR")
+install.packages("rjd3qr")
 ```
 
 To get the current development version from GitHub:
@@ -296,13 +310,13 @@ remotes::install_github("InseeFr/rjd3qr")
 #### Loading the package
 
 ``` r
-library("JDCruncheR")
+library("rjd3qr")
 ```
 
 #### Changing statistical test thresholds
 
 The thresholds of the QR tests can be customised You have to modify the
-option `"jdc_thresholds"`.
+option `"rjd3qr.thresholds"`.
 
 To get the (default or not) values of the thresholds of the tests, you
 can call the fonction `get_thresholds()` :
@@ -441,15 +455,25 @@ A quality report can be generated:
 
 ``` r
 BQ <- extract_QR(x = demetra_m)
+#> Multiple column found for extraction of m-statistics.q
+#> First column selected
 print(BQ$modalities)
 #>   series residuals_homoskedasticity residuals_skewness residuals_kurtosis
-#> 1 France                       Good               Good               Good
-#> 2  Spain                        Bad                Bad                Bad
+#> 1 France                  Uncertain               Good               Good
+#> 2  Spain                       Good                Bad                Bad
 #> 3 Greece                        Bad                Bad                Bad
-#>   oos_mean oos_mse   m7    q q_m2 pct_outliers
-#> 1     Good    <NA> Good Good  Bad         <NA>
-#> 2     Good    <NA> Good  Bad  Bad         <NA>
-#> 3     Good    <NA> Good  Bad Good         <NA>
+#>   residuals_normality residuals_independency qs_residual_s_on_sa
+#> 1                <NA>                   <NA>                <NA>
+#> 2                <NA>                   <NA>                <NA>
+#> 3                <NA>                   <NA>                <NA>
+#>   f_residual_s_on_sa qs_residual_sa_on_i f_residual_sa_on_i f_residual_td_on_sa
+#> 1               <NA>                <NA>               <NA>                <NA>
+#> 2               <NA>                <NA>               <NA>                <NA>
+#> 3               <NA>                <NA>               <NA>                <NA>
+#>   f_residual_td_on_i oos_mean oos_mse   q q_m2   m7 pct_outliers
+#> 1               <NA>     Good    <NA> Bad  Bad Good         <NA>
+#> 2               <NA>     Good    <NA> Bad  Bad Good         <NA>
+#> 3               <NA>     Good    <NA> Bad Good Good         <NA>
 ```
 
 #### Calculate a score
@@ -470,9 +494,9 @@ BQ_score <- compute_score(
 )
 extract_score(x = BQ_score)
 #>   series score
-#> 1 France    60
-#> 2  Spain   110
-#> 3 Greece   100
+#> 1 France   5.5
+#> 2  Spain  25.0
+#> 3 Greece  25.0
 ```
 
 #### Exporting a quality report
@@ -482,7 +506,7 @@ function.
 
 ### Other informations
 
-For more informations on installing and configuring the **{JDCruncheR}**
+For more informations on installing and configuring the **{rjd3qr}**
 package, you can visit the
 [wiki](https://github.com/jdemetra/jwsacruncher/wiki) page.
 

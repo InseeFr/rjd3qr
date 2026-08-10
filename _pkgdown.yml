@@ -23,10 +23,10 @@ navbar:
     articles:
       text: Vignette
       menu:
-      - text: Using the cruncher with JDCruncheR
-        href: articles/Using_the_cruncher_with_JDCruncheR.html
-      - text: Utiliser le cruncher avec JDCruncheR
-        href: articles/Lancement_cruncher.html
+      - text: Using the plug-in JVS with {rjd3qr}
+        href: articles/Plug_in_JVS-EN.html
+      - text: Utiliser le plug-in JVS avec {rjd3qr}
+        href: articles/Plug_in_JVS-FR.html
     news:
       text: News
       href: news/index.html
@@ -79,4 +79,4 @@ reference:
 - title: Deprecated
   desc: Deprecated functions
   contents:
-  - '`deprecated-JDCruncheR`'
+  - '`deprecated-rjd3qr`'

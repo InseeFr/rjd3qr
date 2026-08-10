@@ -1,0 +1,27 @@
+name: Release R Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag (e.g., v1.2.0 or 2.5.1)"
+        required: true
+        type: string
+
+run-name: >
+  Release ${{ inputs.release_tag }} version
+  by @${{ github.actor }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Prepare R package release
+        uses: TanguyBarthelemy/actions/release-r-package@main
+        with:
+          tag: ${{ inputs.release_tag }}
+          main-branch: "main"
+          dev-branch: "develop"
+          change-remotes: "true"

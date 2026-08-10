@@ -301,14 +301,25 @@ extractLeaster <- function(demetra_m) {
     return(leaster)
 }
 
-extractAutoCorr <- function(demetra_m) {
-    auto_corr <- find_variable(
-        demetra_m,
-        pattern = "(^diagnostics\\.seas\\.sa\\.ac1$)|(^seas\\.sa\\.ac1$)",
-        type = "double",
-        variable = "diagnostics.seas-sa-ac1"
+#' @importFrom stats acf
+#' @importFrom stats na.omit
+#' @importFrom stats na.pass
+extractAutoCorr <- function(sa) {
+    auto_corr <- apply(
+        X = sa[, -1L, drop = FALSE],
+        MARGIN = 2L,
+        FUN = \(.sa) {
+            dsa <- diff(na.omit(.sa))
+            .auto_corr <- acf(
+                x = dsa,
+                lag.max = 1L,
+                plot = FALSE,
+                na.action = na.pass
+            )
+            return(.auto_corr$acf[2L])
+        }
     )
-    return(auto_corr)
+    return(list(values = auto_corr))
 }
 
 extractSeasCombined <- function(demetra_m) {
@@ -385,8 +396,8 @@ extractTDFTest <- function(demetra_m) {
 }
 
 #' @importFrom stats pnorm
-extractNormal <- function(demetra_m) {
-    ac1 <- extractAutoCorr(demetra_m)
+extractNormal <- function(demetra_m, sa) {
+    ac1 <- extractAutoCorr(sa)
     nb_obs <- extractNobs(demetra_m)
     val <- stats::pnorm(ac1$values * sqrt(nb_obs$values))
     return(list(
@@ -397,7 +408,7 @@ extractNormal <- function(demetra_m) {
 
 extractIndependence <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     independency_pvalue <- find_variable(
         demetra_m,
@@ -425,7 +436,7 @@ extractIndependence <- function(
 
 extractResidualsTDEffect <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     td_ftest <- find_variable(
         demetra_m,
@@ -453,7 +464,7 @@ extractResidualsTDEffect <- function(
 
 extractResidualsSeasEffect <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     residual_seasonality <- find_variable(
         demetra_m,
@@ -586,18 +597,20 @@ extractARIMA <- function(demetra_m) {
     )
     arima_df[["arima_model"]] <- paste0(
         "(",
-        arima_df[["arima_p"]],
-        ",",
-        arima_df[["arima_d"]],
-        ",",
-        arima_df[["arima_q"]],
+        paste(
+            arima_df[["arima_p"]],
+            arima_df[["arima_d"]],
+            arima_df[["arima_q"]],
+            sep = " "
+        ),
         ")",
         "(",
-        arima_df[["arima_bp"]],
-        ",",
-        arima_df[["arima_bd"]],
-        ",",
-        arima_df[["arima_bq"]],
+        paste(
+            arima_df[["arima_bp"]],
+            arima_df[["arima_bd"]],
+            arima_df[["arima_bq"]],
+            sep = " "
+        ),
         ")"
     )
     return(list(
@@ -613,7 +626,10 @@ extractARIMA <- function(demetra_m) {
     ))
 }
 
-extractStatQ <- function(demetra_m, thresholds = getOption("jdc_thresholds")) {
+extractStatQ <- function(
+    demetra_m,
+    thresholds = getOption("rjd3qr.thresholds")
+) {
     q_stat <- find_variable(
         demetra_m,
         pattern = "(^m\\.statistics\\.q$)|(^q$)",
@@ -665,7 +681,7 @@ extractStatQ <- function(demetra_m, thresholds = getOption("jdc_thresholds")) {
 
 extractOOS_test <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     mean_stat <- find_variable(
         demetra_m,
@@ -727,7 +743,7 @@ extractOOS_test <- function(
 
 extractDistributionTests <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     kurtosis_test <- find_variable(
         demetra_m,
@@ -827,7 +843,7 @@ extractDistributionTests <- function(
 
 extractOutliers <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     nb_obs <- extractNobs(demetra_m)
     nout <- extractNout(demetra_m)
@@ -870,7 +886,7 @@ extractOutliers <- function(
 
 extractSeasTest <- function(
     demetra_m,
-    thresholds = getOption("jdc_thresholds")
+    thresholds = getOption("rjd3qr.thresholds")
 ) {
     qs_residual_s_on_sa <- find_variable(
         demetra_m,

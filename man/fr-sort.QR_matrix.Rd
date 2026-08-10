@@ -26,7 +26,7 @@ Permet de trier les bilans qualité en fonction d'une ou plusieurs variables.
 
 # Chemin menant au fichier demetra_m.csv
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )

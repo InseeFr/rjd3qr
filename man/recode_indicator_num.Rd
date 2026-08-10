@@ -55,7 +55,7 @@ that can be added into the modalities matrix.
 \examples{
 # Path to the demetra_m.csv file
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )

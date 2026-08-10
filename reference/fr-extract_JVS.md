@@ -10,8 +10,7 @@ diagnostics et les séries de sortie.
 - dir:
 
   Chemin vers le dossier contenant les fichiers demetra_m.csv,
-  series_decomposition_y_cmp.csv, series_decomposition_sa_cmp.csv,
-  series_decomposition_s_cmp.csv et series_decomposition_t_cmp.csv.
+  series_y.csv, series_sa.csv, series_s.csv et series_t.csv.
 
 - demetra_m:
 
@@ -58,10 +57,10 @@ Les sorties nécessaires sont la matrice de diagnostics demetra_m
 et t (généralement lues depuis les fichiers CSV des séries).
 
 Tous ces fichiers peuvent être générés en lançant le cruncher (fonctions
-[`cruncher_and_param`](https://aqlt.github.io/rjwsacruncher/reference/cruncher_and_param.html)).
+`cruncher_and_param`).
 
 Pour plus d'informations sur la génération des sorties, voir la vignette
-: `browseVignettes(package = "JDCruncheR")`
+: `browseVignettes(package = "rjd3qr")`
 
 Si les séries sont fournies, elles doivent être des `data.frame` avec
 les dates dans la première colonne et les valeurs des séries dans les
@@ -83,7 +82,7 @@ répertoire contenant les fichiers CSV correspondants.
 dir_path <- system.file(
     "extdata",
     "WS/WS_world/Output/SAProcessing-1",
-    package = "JDCruncheR"
+    package = "rjd3qr"
 )
 
 # Extraction du rapport JVS :

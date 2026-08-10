@@ -1,8 +1,8 @@
 # Changelog
 
-## JDCruncheR 0.4.1
+## rjd3qr 0.4.2
 
-CRAN release: 2026-07-23
+CRAN release: 2026-08-07
 
 All notable changes to this project will be documented in this file.
 
@@ -16,6 +16,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Changed
 
+- The `write` method for `JVS_matrix` object now works with a `file`
+  argument instead of `export_dir` and `format`.
+- ARIMA model is now displayed with space instead of commas
+- {JDCruncheR} becomes {rjd3qr}
+- The option `jdc_thresholds` is renamed `rjd3qr.thresholds` to avoid
+  conflict with other packages.
 - In JVS, Trend filters and D7 filters are now displayed starting with a
   “H”
 - In JVS, Leap year and Easter variables are displayed as “Yes” or “No”
@@ -25,7 +31,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - In JVS, the final series are no longer used and replaced by the
   decomposition series before applying the effects of preadjustment
 - In JVS, the irregular standard deviation is now based on the
-  computation sa_cmp - t_cmp
+  computation sa - t
 - In example data, we updated the generated output csv files to match
   JVS and QR creation
 - The column follows now the same order as the plug-in
@@ -85,7 +91,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 #### Deprecated
 
 - The function
-  [`export_xlsx()`](https://inseefr.github.io/rjd3qr/reference/deprecated-JDCruncheR.md)
+  [`export_xlsx()`](https://inseefr.github.io/rjd3qr/reference/deprecated-rjd3qr.md)
   is deprecated in favour of `write`.
 
 ### [0.3.6](https://github.com/InseeFr/rjd3qr/compare/v0.3.5...v0.3.6) - 2025-07-24
@@ -147,7 +153,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 #### Fixed
 
 - bug in
-  [`export_xlsx()`](https://inseefr.github.io/rjd3qr/reference/deprecated-JDCruncheR.md)
+  [`export_xlsx()`](https://inseefr.github.io/rjd3qr/reference/deprecated-rjd3qr.md)
   with [`ifelse()`](https://rdrr.io/r/base/ifelse.html)
 
 ### [0.3.0](https://github.com/InseeFr/rjd3qr/compare/v0.2.4...v0.3.0) - 2024-10-09
@@ -257,18 +263,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Added
 
-- [`update_workspace()`](https://aqlt.github.io/rjwsacruncher/reference/update_workspace.html)
-  to update a workspace without exporting the results.
+- `update_workspace()` to update a workspace without exporting the
+  results.
 - additionnal functions to extract a quality report from the JDemetra+
   diagnostics matrix, as well as to use and export said quality reports.
 
 #### Changed
 
-- addition of the parameter `log_file` to the functions
-  [`cruncher()`](https://aqlt.github.io/rjwsacruncher/reference/cruncher.html)
-  and
-  [`cruncher_and_param()`](https://aqlt.github.io/rjwsacruncher/reference/cruncher_and_param.html)
-  to export the cruncher log if required.
+- addition of the parameter `log_file` to the functions `cruncher()` and
+  `cruncher_and_param()` to export the cruncher log if required.
 - update of the options `default_matrix_item` and
   `default_tsmatrix_series`, in accordance with the parameters of
   version 2.2.0 of JDemetra+.

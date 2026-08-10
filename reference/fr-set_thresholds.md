@@ -33,6 +33,8 @@ Enfin, si `test_name` et `thresholds` sont tous deux fournis, seuls les
 seuils du test `test_name` seront mis à jour avec les valeurs spécifiées
 dans `thresholds`.
 
+Cette fonction met à jour l'option `rjd3qr.thresholds`.
+
 ## Examples
 
 ``` r

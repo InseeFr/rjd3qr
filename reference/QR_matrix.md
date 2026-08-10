@@ -84,9 +84,7 @@ Other QR_matrix functions:
 [`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
 [`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md),
 [`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md),
-[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
+[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md)
 
 ## Examples
 

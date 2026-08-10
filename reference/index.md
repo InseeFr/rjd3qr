@@ -47,14 +47,8 @@ available
 
 Functions to export a quality report
 
-- [`write(`*`<JVS_matrix>`*`)`](https://inseefr.github.io/rjd3qr/reference/write.JVS_matrix.md)
-  : Exporting JVS_matrix objects in CSV or Excel files
-- [`write(`*`<mQR_matrix>`*`)`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
-  : Exporting mQR_matrix objects in Excel files
-- [`write(`*`<QR_matrix>`*`)`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md)
-  : Exporting QR_matrix objects in an Excel file
 - [`write()`](https://inseefr.github.io/rjd3qr/reference/write.md) :
-  Writing QR to files
+  Writing Quality Reports to Files
 
 ## Threshold
 
@@ -69,5 +63,5 @@ Functions to manage, reset and custom thresholds
 
 Deprecated functions
 
-- [`export_xlsx()`](https://inseefr.github.io/rjd3qr/reference/deprecated-JDCruncheR.md)
+- [`export_xlsx()`](https://inseefr.github.io/rjd3qr/reference/deprecated-rjd3qr.md)
   : Deprecated functions

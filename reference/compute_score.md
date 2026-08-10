@@ -17,7 +17,7 @@ compute_score(
   na.rm = TRUE,
   n_contrib_score = NULL,
   conditional_indicator = NULL,
-  thresholds = getOption("jdc_thresholds"),
+  thresholds = getOption("rjd3qr.thresholds"),
   ...
 )
 
@@ -153,7 +153,7 @@ française](https://inseefr.github.io/rjd3qr/reference/fr-compute_score.md)
 ``` r
 # Path of matrix demetra_m
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )

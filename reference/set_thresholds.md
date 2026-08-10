@@ -37,6 +37,8 @@ Finally, if `test_name` and `thresholds` are not missing, then only the
 thresholds of the test `test_name` are updated with the value
 `thresholds`.
 
+This function updates the option `rjd3qr.thresholds`.
+
 ## See also
 
 [Traduction

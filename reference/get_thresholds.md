@@ -28,6 +28,8 @@ missing, it returns all the current thresholds.
 
 If `test_name` is missing, all threshold will be returned.
 
+The thresholds are read from the option `rjd3qr.thresholds`.
+
 ## See also
 
 [Traduction

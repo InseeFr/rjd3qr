@@ -2,9 +2,9 @@
 
 ## Authors
 
-- **Tanguy Barthelemy**. Author, maintainer, artist.
+- **Tanguy Barthelemy**. Author, artist.
 
-- **Eulalie Delaune**. Author.
+- **Eulalie Delaune**. Author, maintainer.
 
 - **Alain Quartier-la-Tente**. Author.
   [](https://orcid.org/0000-0001-7890-3857)
@@ -18,16 +18,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/InseeFr/rjd3qr/blob/v0.4.1/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/InseeFr/rjd3qr/blob/develop/DESCRIPTION)
 
-Barthelemy T, Delaune E, Quartier-la-Tente A, Smyk A (2026).
-*JDCruncheR: 'JDemetra+' Quality Report Generator*. R package version
-0.4.1, <https://github.com/InseeFr/rjd3qr>.
+Barthelemy T, Delaune E, Quartier-la-Tente A, Smyk A (2026). *rjd3qr:
+'JDemetra+' Quality Report Generator*. R package version 0.4.2,
+<https://github.com/InseeFr/rjd3qr>.
 
     @Manual{,
-      title = {JDCruncheR: 'JDemetra+' Quality Report Generator},
+      title = {rjd3qr: 'JDemetra+' Quality Report Generator},
       author = {Tanguy Barthelemy and Eulalie Delaune and Alain Quartier-la-Tente and Anna Smyk},
       year = {2026},
-      note = {R package version 0.4.1},
+      note = {R package version 0.4.2},
       url = {https://github.com/InseeFr/rjd3qr},
     }

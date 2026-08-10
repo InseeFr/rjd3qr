@@ -48,16 +48,14 @@ Other QR_matrix functions:
 [`extract_QR()`](https://inseefr.github.io/rjd3qr/reference/extract_QR.md),
 [`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
 [`rbind.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.md),
-[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
-[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
+[`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md)
 
 ## Examples
 
 ``` r
 # Path of matrix demetra_m
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )

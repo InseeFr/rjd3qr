@@ -23,6 +23,8 @@ est manquant, la fonction retourne tous les seuils.
 
 Si `test_name` est manquant, tous les seuils seront retournés.
 
+Les seuils sont lus depuis l'option `rjd3qr.thresholds`.
+
 ## Examples
 
 ``` r

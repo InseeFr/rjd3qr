@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Plug-in JVS - EN • JDCruncheR</title>
+<title>Plug-in JVS - EN • rjd3qr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -23,9 +23,9 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../index.html">JDCruncheR</a>
+    <a class="navbar-brand me-2" href="../index.html">rjd3qr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,11 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home fa-lg"></span></a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Package functions</a></li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignette" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignette</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignette">
-<li><a class="dropdown-item" href="../articles/Using_the_cruncher_with_JDCruncheR.html">Using the cruncher with JDCruncheR</a></li>
-    <li><a class="dropdown-item" href="../articles/Lancement_cruncher.html">Utiliser le cruncher avec JDCruncheR</a></li>
+<li><a class="dropdown-item" href="../articles/Plug_in_JVS-EN.html">Using the plug-in JVS with {rjd3qr}</a></li>
+    <li><a class="dropdown-item" href="../articles/Plug_in_JVS-FR.html">Utiliser le plug-in JVS avec {rjd3qr}</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
@@ -70,16 +70,16 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Plug-in JVS - EN</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/InseeFr/rjd3qr/blob/v0.4.1/vignettes/Plug_in_JVS-EN.Rmd" class="external-link"><code>vignettes/Plug_in_JVS-EN.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/InseeFr/rjd3qr/blob/develop/vignettes/Plug_in_JVS-EN.Rmd" class="external-link"><code>vignettes/Plug_in_JVS-EN.Rmd</code></a></small>
       <div class="d-none name"><code>Plug_in_JVS-EN.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3qr" class="external-link">"JDCruncheR"</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3qr" class="external-link">"rjd3qr"</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'JDCruncheR'</span></span>
+<span><span class="co">#&gt; Attaching package: 'rjd3qr'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     write</span></span></code></pre></div>
@@ -87,7 +87,7 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>This vignette explains how to create a JVS Quality Report with the
-{JDCruncheR} package. This only works for v3.</p>
+{rjd3qr} package. This only works for v3.</p>
 </div>
 <div class="section level2">
 <h2 id="definition-of-the-jvs-qr">Definition of the JVS QR<a class="anchor" aria-label="anchor" href="#definition-of-the-jvs-qr"></a>
@@ -260,15 +260,10 @@ following options:</p>
 <span>        <span class="st">"arima.p"</span>, <span class="st">"arima.d"</span>, <span class="st">"arima.q"</span>, <span class="st">"arima.bp"</span>, <span class="st">"arima.bd"</span>, <span class="st">"arima.bq"</span>,</span>
 <span>        <span class="st">"m-statistics.q"</span>, <span class="st">"m-statistics.q-m2"</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>    default_tsmatrix_series <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>        <span class="st">"decomposition.y_cmp"</span>,</span>
-<span>        <span class="st">"decomposition.s_cmp"</span>,</span>
-<span>        <span class="st">"decomposition.sa_cmp"</span>,</span>
-<span>        <span class="st">"decomposition.t_cmp"</span></span>
-<span>    <span class="op">)</span></span>
+<span>    default_tsmatrix_series <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="st">"s"</span>, <span class="st">"sa"</span>, <span class="st">"t"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://aqlt.github.io/rjwsacruncher/reference/cruncher_and_param.html" class="external-link">cruncher_and_param</a></span><span class="op">(</span></span>
+<span><span class="fu">cruncher_and_param</span><span class="op">(</span></span>
 <span>    workspace <span class="op">=</span> <span class="st">"path/to/the/workspace/file.xml"</span>,</span>
 <span>    cruncher_bin_directory <span class="op">=</span> <span class="st">"path/to/the/cruncher/v3/bin/directory"</span>,</span>
 <span>    csv_layout <span class="op">=</span> <span class="st">"vtable"</span>,</span>
@@ -290,7 +285,7 @@ Report can be generated.</p>
 <span><span class="va">dir_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span>
 <span>    <span class="st">"extdata"</span>,</span>
 <span>    <span class="st">"WS/WS_world/Output/SAProcessing-1"</span>,</span>
-<span>    package <span class="op">=</span> <span class="st">"JDCruncheR"</span></span>
+<span>    package <span class="op">=</span> <span class="st">"rjd3qr"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">JVS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_JVS.html">extract_JVS</a></span><span class="op">(</span>dir <span class="op">=</span> <span class="va">dir_path</span><span class="op">)</span></span></code></pre></div>
@@ -379,10 +374,16 @@ it, you need to export it.</p>
 <p>To export the JVS Quality Report, you need to use the writing
 function. The report can be exported as a .csv file:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/write.html">write</a></span><span class="op">(</span><span class="va">JVS</span>, format <span class="op">=</span> <span class="st">"csv"</span>, export_dir <span class="op">=</span> <span class="st">"path/to/the/export/directory"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>The report can be exported as a .xlsx file:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/write.html">write</a></span><span class="op">(</span><span class="va">JVS</span>, file <span class="op">=</span> <span class="st">"path/to/the/export/directory"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>By default, the file is names “JobVacancySurveyQR.csv”. To change it,
+you can specify a name in the path of the <code>file</code>
+argument:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/write.html">write</a></span><span class="op">(</span><span class="va">JVS</span>, format <span class="op">=</span> <span class="st">"xlsx"</span>, export_dir <span class="op">=</span> <span class="st">"path/to/the/export/directory"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/write.html">write</a></span><span class="op">(</span><span class="va">JVS</span>, file <span class="op">=</span> <span class="st">"path/to/the/export/directory/file_name.csv"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>The report can also be exported as a .xlsx file. In this case, it is
+necessary to specify it in the <code>file</code> argument:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/write.html">write</a></span><span class="op">(</span><span class="va">JVS</span>, file <span class="op">=</span> <span class="st">"path/to/the/export/directory/file_name.xlsx"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="comparison-v3-r">Comparison: v3 / R<a class="anchor" aria-label="anchor" href="#comparison-v3-r"></a>
@@ -423,39 +424,17 @@ R they correspond to the first day.</p>
 <li>Presence of TD effects</li>
 <li>Residual Seasonality in SA Series F-test</li>
 <li>Residual TD Effect</li>
+<li>Quality for TS</li>
 </ul>
 <p>Very slight differences due to different thresholds between the
 interface and the cruncher.</p>
 </div>
 <div class="section level3">
-<h3 id="log-transformation-arima-model-leapyear-movingholiday-nbtd-noutliers-outlier1-outlier2-outlier3-q-stat-for-x13-stage-2-henderson-filter-final-henderson-filter-seasonal-filter">Log transformation, ARIMA Model, Leapyear, MovingHoliday, NbTD,
+<h3 id="log-transformation-arima-model-leapyear-movingholiday-nbtd-noutliers-outlier1-outlier2-outlier3-q-stat-for-x13-stage-2-henderson-filter-final-henderson-filter-seasonal-filter-irregular-standard-deviation-max-adj-autocorrelation-of-order-1-of-the-sa-series-normal-test-negative-and-significant-autocorrelation">Log transformation, ARIMA Model, Leapyear, MovingHoliday, NbTD,
 Noutliers, Outlier1, Outlier2, Outlier3, Q-stat for X13, Stage 2
-Henderson Filter, Final Henderson Filter, Seasonal.Filter<a class="anchor" aria-label="anchor" href="#log-transformation-arima-model-leapyear-movingholiday-nbtd-noutliers-outlier1-outlier2-outlier3-q-stat-for-x13-stage-2-henderson-filter-final-henderson-filter-seasonal-filter"></a>
-</h3>
-<p>No differences.</p>
-</div>
-<div class="section level3">
-<h3 id="irregular-standard-deviation">Irregular Standard Deviation<a class="anchor" aria-label="anchor" href="#irregular-standard-deviation"></a>
-</h3>
-<p>There are slight differences between v3 (which uses the correct
-number of degrees of freedom) and the R code, which uses
-<code>df = 1</code> (with the <code><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd()</a></code> function). In future
-versions of the JVS plug-in, the results will be identical.</p>
-</div>
-<div class="section level3">
-<h3 id="quality-for-ts-max-adj-autocorrelation-of-order-1-of-the-sa-series">Quality for TS, Max adj, Autocorrelation of order 1 of the SA
-series<a class="anchor" aria-label="anchor" href="#quality-for-ts-max-adj-autocorrelation-of-order-1-of-the-sa-series"></a>
-</h3>
-<p>No differences.</p>
-</div>
-<div class="section level3">
-<h3 id="normal-test">Normal test<a class="anchor" aria-label="anchor" href="#normal-test"></a>
-</h3>
-<p>The test is carried out using base R and may show slight differences
-(to within 10**4).</p>
-</div>
-<div class="section level3">
-<h3 id="negative-and-significant-autocorrelation">Negative and significant autocorrelation<a class="anchor" aria-label="anchor" href="#negative-and-significant-autocorrelation"></a>
+Henderson Filter, Final Henderson Filter, Seasonal.Filter, Irregular
+Standard Deviation, Max adj, Autocorrelation of order 1 of the SA
+series, Normal test, Negative and significant autocorrelation<a class="anchor" aria-label="anchor" href="#log-transformation-arima-model-leapyear-movingholiday-nbtd-noutliers-outlier1-outlier2-outlier3-q-stat-for-x13-stage-2-henderson-filter-final-henderson-filter-seasonal-filter-irregular-standard-deviation-max-adj-autocorrelation-of-order-1-of-the-sa-series-normal-test-negative-and-significant-autocorrelation"></a>
 </h3>
 <p>No differences.</p>
 </div>

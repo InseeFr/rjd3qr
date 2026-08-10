@@ -2,9 +2,9 @@
 
 ``` r
 
-library("JDCruncheR")
+library("rjd3qr")
 #> 
-#> Attaching package: 'JDCruncheR'
+#> Attaching package: 'rjd3qr'
 #> The following object is masked from 'package:base':
 #> 
 #>     write
@@ -13,7 +13,7 @@ library("JDCruncheR")
 ## Introduction
 
 This vignette explains how to create a JVS Quality Report with the
-{JDCruncheR} package. This only works for v3.
+{rjd3qr} package. This only works for v3.
 
 ## Definition of the JVS QR
 
@@ -140,12 +140,7 @@ options(
         "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
         "m-statistics.q", "m-statistics.q-m2"
     ),
-    default_tsmatrix_series = c(
-        "decomposition.y_cmp",
-        "decomposition.s_cmp",
-        "decomposition.sa_cmp",
-        "decomposition.t_cmp"
-    )
+    default_tsmatrix_series = c("y", "s", "sa", "t")
 )
 
 cruncher_and_param(
@@ -173,7 +168,7 @@ rapport JVS :
 dir_path <- system.file(
     "extdata",
     "WS/WS_world/Output/SAProcessing-1",
-    package = "JDCruncheR"
+    package = "rjd3qr"
 )
 
 JVS <- extract_JVS(dir = dir_path)
@@ -198,14 +193,25 @@ Pour exporter le rapport de qualité JVS, vous devez utiliser la fonction
 
 ``` r
 
-write(JVS, format = "csv", export_dir = "chemin/vers/le/répertoire/d'export", overwrite = TRUE)
+write(JVS, file = "chemin/vers/le/répertoire/d'export", overwrite = TRUE)
 ```
 
-Le rapport peut être exporté sous forme de fichier .xlsx :
+Par défaut, le fichier s’appellera “JobVacancySurveyQR.csv”. Pour lui
+donner un nom spécifique, il est possible de l’indiquer dans le chemin
+de l’argument `file` :
 
 ``` r
 
-write(JVS, format = "xlsx", export_dir = "chemin/vers/le/répertoire/d'export", overwrite = TRUE)
+write(JVS, file = "chemin/vers/le/répertoire/d'export/nom_fichier.csv", overwrite = TRUE)
+```
+
+Le rapport peut être exporté sous forme de fichier .xlsx. Pour cela, il
+est nécessaire de l’indiquer dans le nom du fichier dans l’argument
+`file` :
+
+``` r
+
+write(JVS, file = "chemin/vers/le/répertoire/d'export/nom_fichier.xlsx", overwrite = TRUE)
 ```
 
 ## Comparaison : v3 / R
@@ -242,32 +248,11 @@ Pour les tests :
 - Presence of TD effects
 - Residual Seasonality in SA Series F-test
 - Residual TD Effect
+- Quality for TS
 
 Très légères différences dues à des seuils différents entre l’interface
 et le cruncher.
 
-### Log transformation, ARIMA Model, Leapyear, MovingHoliday, NbTD, Noutliers, Outlier1, Outlier2, Outlier3, Q-stat for X13, Stage 2 Henderson Filter, Final Henderson Filter, Seasonal.Filter
-
-Aucune différence.
-
-### Irregular Standard Deviation
-
-Il existe de légères différences entre la version v3 (qui utilise le
-nombre correct de degrés de liberté) et le code R, qui utilise `df = 1`
-(par défault avec la fonction
-[`sd()`](https://rdrr.io/r/stats/sd.html)). Dans les prochaines versions
-du plug-in JVS, les résultats seront identiques entre la version R et la
-verions de jdplus-incubator.
-
-### Quality for TS, Max adj, Autocorrelation of order 1 of the SA series
-
-Aucune différence.
-
-### Normal test
-
-Le test est effectué à l’aide de R de base et peut présenter de légères
-différences (de l’ordre de 10\*\*4).
-
-### Negative and significant autocorrelation
+### Log transformation, ARIMA Model, Leapyear, MovingHoliday, NbTD, Noutliers, Outlier1, Outlier2, Outlier3, Q-stat for X13, Stage 2 Henderson Filter, Final Henderson Filter, Seasonal.Filter, Irregular Standard Deviation, Max adj, Autocorrelation of order 1 of the SA series, Normal test, Negative and significant autocorrelation
 
 Aucune différence.

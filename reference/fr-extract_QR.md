@@ -43,17 +43,12 @@ La fonction permet d'extraire un bilan qualité à partir d'un fichier csv
 contenant l'ensemble des diagnostics (généralement fichier
 *demetra_m.csv*).
 
-Ce fichier peut être obtenu en lançant le cruncher
-([`cruncher`](https://aqlt.github.io/rjwsacruncher/reference/cruncher.html)
-ou
-[`cruncher_and_param`](https://aqlt.github.io/rjwsacruncher/reference/cruncher_and_param.html))
-avec l'ensemble des paramètres de base pour les paramètres à exporter et
-l'option `csv_layout = "vtable"` (par défaut) pour le format de sortie
-des fichiers csv (option de
-[`cruncher_and_param`](https://aqlt.github.io/rjwsacruncher/reference/cruncher_and_param.html)
-ou de
-[`create_param_file`](https://aqlt.github.io/rjwsacruncher/reference/create_param_file.html)
-lors de la création du fichier de paramètres).
+Ce fichier peut être obtenu en lançant le cruncher (`cruncher` ou
+`cruncher_and_param`) avec l'ensemble des paramètres de base pour les
+paramètres à exporter et l'option `csv_layout = "vtable"` (par défaut)
+pour le format de sortie des fichiers csv (option de
+`cruncher_and_param` ou de `create_param_file` lors de la création du
+fichier de paramètres).
 
 Le résultat de cette fonction est un objet
 [`QR_matrix`](https://inseefr.github.io/rjd3qr/reference/QR_matrix.md)
@@ -80,7 +75,7 @@ parallèle dans R et utilisée avec l'argument `x`).
 ``` r
 # Chemin menant au fichier demetra_m.csv
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )

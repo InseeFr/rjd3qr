@@ -41,16 +41,14 @@ Other QR_matrix functions:
 [`extract_QR()`](https://inseefr.github.io/rjd3qr/reference/extract_QR.md),
 [`print.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.md),
 [`sort`](https://inseefr.github.io/rjd3qr/reference/sort.md),
-[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md),
-[`write.QR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.md),
-[`write.mQR_matrix()`](https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.md)
+[`weighted_score()`](https://inseefr.github.io/rjd3qr/reference/weighted_score.md)
 
 ## Examples
 
 ``` r
 # Path of matrix demetra_m
 demetra_path <- file.path(
-    system.file("extdata", package = "JDCruncheR"),
+    system.file("extdata", package = "rjd3qr"),
     "WS/WS_world/Output/SAProcessing-1",
     "demetra_m.csv"
 )
@@ -63,7 +61,10 @@ QR <- extract_QR(demetra_path)
 #> Last column selected
 
 # Compute differents scores
-QR1 <- compute_score(QR, score_pond = c(m7 = 2, q = 3, qs_residual_s_on_sa = 5))
+QR1 <- compute_score(
+    x = QR,
+    score_pond = c(m7 = 2, q = 3, qs_residual_s_on_sa = 5)
+)
 QR2 <- compute_score(QR, score_pond = c(m7 = 2, qs_residual_s_on_sa = 5))
 
 # Merge two quality report

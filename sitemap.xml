@@ -7,12 +7,11 @@
 <url><loc>https://inseefr.github.io/rjd3qr/authors.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/index.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/news/index.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/JDCruncheR-package.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/JVS_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/QR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/QR_var_manipulation.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/compute_score.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/deprecated-JDCruncheR.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3qr/reference/deprecated-rjd3qr.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/extract_JVS.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/extract_QR.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/extract_score.html</loc></url>
@@ -30,21 +29,16 @@
 <url><loc>https://inseefr.github.io/rjd3qr/reference/fr-set_thresholds.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/fr-sort.QR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/fr-weighted_score.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/fr-write.JVS_matrix.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/fr-write.QR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/fr-write.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/fr-write.mQR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/get_thresholds.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/index.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/print.QR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/rbind.QR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/recode_indicator_num.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3qr/reference/rjd3qr-package.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/set_thresholds.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/sort.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/weighted_score.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/write.JVS_matrix.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/write.QR_matrix.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3qr/reference/write.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3qr/reference/write.mQR_matrix.html</loc></url>
 </urlset>
 

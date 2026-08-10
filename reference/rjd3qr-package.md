@@ -1,0 +1,35 @@
+# rjd3qr: 'JDemetra+' Quality Report Generator
+
+Tool for generating quality reports from cruncher outputs (and
+calculating series scores). The latest version of the cruncher can be
+downloaded here: <https://github.com/jdemetra/jwsacruncher/releases>.
+
+## See also
+
+Useful links:
+
+- <https://github.com/InseeFr/rjd3qr>
+
+- <https://inseefr.github.io/rjd3qr/>
+
+- Report bugs at <https://github.com/InseeFr/rjd3qr/issues>
+
+## Author
+
+**Maintainer**: Eulalie Delaune <timeserieswithjdemetraandr@gmail.com>
+
+Authors:
+
+- Eulalie Delaune <timeserieswithjdemetraandr@gmail.com>
+
+- Tanguy Barthelemy <tanguy.barthelemy@insee.fr> \[artist\]
+
+- Alain Quartier-la-Tente <alain.quartier@yahoo.fr>
+  ([ORCID](https://orcid.org/0000-0001-7890-3857))
+
+- Anna Smyk <anna.smyk@insee.fr>
+
+Other contributors:
+
+- Institut national de la statistique et des études économiques
+  (https://www.insee.fr/) \[copyright holder\]

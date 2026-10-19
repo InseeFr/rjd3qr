@@ -83,8 +83,8 @@
 <div class="section level3">
 <h3 id="présentation">Présentation<a class="anchor" aria-label="anchor" href="#pr%C3%A9sentation"></a>
 </h3>
-<p>Le but premier du package <strong>{rjd3qr}</strong> est de fournir un accès rapide et facile au cruncher (<code>JWSACruncher</code>) depuis R. Le cruncher est un outil de mise à jour des workspaces de JDemetra+ sans avoir à ouvrir la GUI (Graphical User Interface). La dernière version peut être téléchargée ici : <a href="https://github.com/jdemetra/jwsacruncher/releases" class="external-link uri">https://github.com/jdemetra/jwsacruncher/releases</a>. Pour plus d’information, vous pouvez visiter la page <a href="https://github.com/jdemetra/jwsacruncher/wiki" class="external-link">wiki</a>.</p>
-<p>*{rjd3qr}** permet de générer des <em>bilans qualité</em> utilisant l’output du Cruncher (fichier demetra_m.csv). Ce bilan comporte de la désaisonnalisation. Il peut être utilisé pour repérer les séries les plus problématiques qui nécessitent une expertise manuelle. Cela est très utile lorsqu’on a beaucoup de séries à désaisonnaliser.</p>
+<p>{rjd3qr}* permet de générer des bilans qualité (BQ) utilisant l’output du Cruncher (fichier demetra_m.csv). Ce bilan comporte un score fondé sur les principaux diagnostics de la désaisonnalisation. Il peut être utilisé pour repérer les séries les plus problématiques nécessitant une expertise manuelle, particulièrement utile lorsque l’on désaisonnalise de nombreuses séries. Plus d’informations sur le processus de production de séries désaisonnalisées <a href="prod.jdemetra.org">ici</a></p>
+<p>Pour d’abord obtenir l’output du Cruncher (fichier demetra_m.csv) il faut utiliser le package <a href="https://github.com/AQLT/rjwsacruncher" class="external-link">rjwsacruncher</a></p>
 </div>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -110,8 +110,8 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3qr" class="external-link">"rjd3qr"</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'rjd3qr'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
+<span><span class="co">#&gt; Attachement du package : 'rjd3qr'</span></span>
+<span><span class="co">#&gt; L'objet suivant est masqué depuis 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     write</span></span></code></pre></div>
 </div>
@@ -394,20 +394,14 @@
 <div class="section level4">
 <h4 id="exporter-un-bilan-qualité">Exporter un bilan qualité<a class="anchor" aria-label="anchor" href="#exporter-un-bilan-qualit%C3%A9"></a>
 </h4>
-<p>Enfin il est possible d’exporter un bilan qualité via la fonction <code>export_xlsx</code>.</p>
+<p>Enfin il est possible d’exporter un bilan qualité via la fonction <code>write</code>.</p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="autres-informations">Autres informations<a class="anchor" aria-label="anchor" href="#autres-informations"></a>
-</h3>
-<p>Pour plus d’informations sur l’installation et la configuration du package <strong>{rjd3qr}</strong>, vous pouvez visiter la page <a href="https://github.com/jdemetra/jwsacruncher/wiki" class="external-link">wiki</a></p>
-<p>Pour une description plus complète des packages R pour JDemetra+ voir le document de travail Insee <a href="https://www.insee.fr/fr/statistiques/5019786" class="external-link">Les packages R pour JDemetra+ : une aide à la désaisonnalisation</a></p>
 </div>
 <div class="section level3">
 <h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
-<p>The primary objective of the <strong>{rjd3qr}</strong> package is to provide a quick and easy access to the JDemetra+ cruncher (<code>JWSACruncher</code>) from R. The cruncher is a tool for updating JDemetra+ workspaces, without having to open the graphical user interface. The latest version can be downloaded here: <a href="https://github.com/jdemetra/jwsacruncher/releases" class="external-link uri">https://github.com/jdemetra/jwsacruncher/releases</a>. For more information, please refer to the <a href="https://github.com/jdemetra/jwsacruncher/wiki" class="external-link">wiki page</a>.</p>
-<p>With <strong>{rjd3qr}</strong>, you can also generate a <em>quality report</em> based on the cruncher’s output. This report is a formatted summary of the seasonal adjustment process master diagnostics and parameters. It can be used to spot the most problematic series which will require a finer analysis. This is most useful when dealing with a large number of series.</p>
+<p>{rjd3qr}* allows to generate quality reports (QR) using the Cruncher’s output (demetra_m.csv file). This report includes a score based on seasonal adjustment main diagnostics. It can be used to identify the most problematic time series requiring manual review, which is particularly useful when seasonally adjusting a large number of series. More information on the production process of seasonally adjusted series <a href="prod.jdemetra.org">here</a></p>
+<p>To first obtain the Cruncher output (demetra_m.csv file), you must use the <a href="https://github.com/AQLT/rjwsacruncher" class="external-link">rjwsacruncher</a> package</p>
 </div>
 <div class="section level3">
 <h3 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
@@ -437,7 +431,7 @@
 <h4 id="changing-statistical-test-thresholds">Changing statistical test thresholds<a class="anchor" aria-label="anchor" href="#changing-statistical-test-thresholds"></a>
 </h4>
 <p>The thresholds of the QR tests can be customised You have to modify the option <code>"rjd3qr.thresholds"</code>.</p>
-<p>To get the (default or not) values of the thresholds of the tests, you can call the fonction <code><a href="reference/get_thresholds.html">get_thresholds()</a></code> :</p>
+<p>To get the (default or not) values of the thresholds of the tests, you can call the function <code><a href="reference/get_thresholds.html">get_thresholds()</a></code> :</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_thresholds.html">get_thresholds</a></span><span class="op">(</span><span class="st">"m7"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Good    Bad Severe </span></span>
@@ -514,7 +508,7 @@
 <span><span class="co">#&gt; $grade</span></span>
 <span><span class="co">#&gt;      Good Uncertain       Bad    Severe </span></span>
 <span><span class="co">#&gt;         0         1         3         5</span></span></code></pre></div>
-<p>To change the value of the option, you can use the fonction <code><a href="reference/set_thresholds.html">set_thresholds()</a></code>:</p>
+<p>To change the value of the option, you can use the function <code><a href="reference/set_thresholds.html">set_thresholds()</a></code>:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Set threshold to imposed value</span></span>
 <span><span class="fu"><a href="reference/set_thresholds.html">set_thresholds</a></span><span class="op">(</span>test_name <span class="op">=</span> <span class="st">"m7"</span>, thresholds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Good <span class="op">=</span> <span class="fl">0.8</span>, Bad <span class="op">=</span> <span class="fl">1.4</span>, Severe <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span></span>
@@ -546,7 +540,7 @@
 <span><span class="co">#&gt;       0.0       0.1       1.0      10.0</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="calculate-a-quality-report">Calculate a quality report<a class="anchor" aria-label="anchor" href="#calculate-a-quality-report"></a>
+<h4 id="generating-a-quality-report">Generating a quality report<a class="anchor" aria-label="anchor" href="#generating-a-quality-report"></a>
 </h4>
 <p>For example, starting from a matrix <code>demetra_m.csv</code> :</p>
 <table class="table">
@@ -687,7 +681,7 @@
 <span><span class="co">#&gt; 3               &lt;NA&gt;     Good    &lt;NA&gt; Bad Good Good         &lt;NA&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="calculate-a-score">Calculate a score<a class="anchor" aria-label="anchor" href="#calculate-a-score"></a>
+<h4 id="compute-a-score">Compute a score<a class="anchor" aria-label="anchor" href="#compute-a-score"></a>
 </h4>
 <p>It is now possible to calculate a score from the quality report:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -711,14 +705,8 @@
 <div class="section level4">
 <h4 id="exporting-a-quality-report">Exporting a quality report<a class="anchor" aria-label="anchor" href="#exporting-a-quality-report"></a>
 </h4>
-<p>Finally, you can export a quality report using the <code>export_xlsx</code> function.</p>
+<p>Finally, you can export a quality report using the <code>write</code> function.</p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="other-informations">Other informations<a class="anchor" aria-label="anchor" href="#other-informations"></a>
-</h3>
-<p>For more informations on installing and configuring the <strong>{rjd3qr}</strong> package, you can visit the <a href="https://github.com/jdemetra/jwsacruncher/wiki" class="external-link">wiki</a> page.</p>
-<p>For a more comprehensive description of the R packages for JDemetra+ check the Insee working paper <a href="https://www.insee.fr/en/statistiques/5019812" class="external-link">R Tools for JDemetra+: Seasonal adjustment made easier</a></p>
 </div>
 </div>
 </div>

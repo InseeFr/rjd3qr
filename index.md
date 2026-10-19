@@ -4,19 +4,18 @@
 
 ### Présentation
 
-Le but premier du package **{rjd3qr}** est de fournir un accès rapide et
-facile au cruncher (`JWSACruncher`) depuis R. Le cruncher est un outil
-de mise à jour des workspaces de JDemetra+ sans avoir à ouvrir la GUI
-(Graphical User Interface). La dernière version peut être téléchargée
-ici : <https://github.com/jdemetra/jwsacruncher/releases>. Pour plus
-d’information, vous pouvez visiter la page
-[wiki](https://github.com/jdemetra/jwsacruncher/wiki).
+{rjd3qr}\* permet de générer des bilans qualité (BQ) utilisant l’output
+du Cruncher (fichier demetra_m.csv). Ce bilan comporte un score fondé
+sur les principaux diagnostics de la désaisonnalisation. Il peut être
+utilisé pour repérer les séries les plus problématiques nécessitant une
+expertise manuelle, particulièrement utile lorsque l’on désaisonnalise
+de nombreuses séries. Plus d’informations sur le processus de production
+de séries désaisonnalisées
+[ici](https://inseefr.github.io/rjd3qr/prod.jdemetra.org)
 
-\*{rjd3qr}\*\* permet de générer des *bilans qualité* utilisant l’output
-du Cruncher (fichier demetra_m.csv). Ce bilan comporte de la
-désaisonnalisation. Il peut être utilisé pour repérer les séries les
-plus problématiques qui nécessitent une expertise manuelle. Cela est
-très utile lorsqu’on a beaucoup de séries à désaisonnaliser.
+Pour d’abord obtenir l’output du Cruncher (fichier demetra_m.csv) il
+faut utiliser le package
+[rjwsacruncher](https://github.com/AQLT/rjwsacruncher)
 
 ### Installation
 
@@ -48,8 +47,8 @@ remotes::install_github("InseeFr/rjd3qr")
 
 library("rjd3qr")
 #> 
-#> Attaching package: 'rjd3qr'
-#> The following object is masked from 'package:base':
+#> Attachement du package : 'rjd3qr'
+#> L'objet suivant est masqué depuis 'package:base':
 #> 
 #>     write
 ```
@@ -256,33 +255,20 @@ extract_score(x = BQ_score)
 #### Exporter un bilan qualité
 
 Enfin il est possible d’exporter un bilan qualité via la fonction
-`export_xlsx`.
-
-### Autres informations
-
-Pour plus d’informations sur l’installation et la configuration du
-package **{rjd3qr}**, vous pouvez visiter la page
-[wiki](https://github.com/jdemetra/jwsacruncher/wiki)
-
-Pour une description plus complète des packages R pour JDemetra+ voir le
-document de travail Insee [Les packages R pour JDemetra+ : une aide à la
-désaisonnalisation](https://www.insee.fr/fr/statistiques/5019786)
+`write`.
 
 ### Overview
 
-The primary objective of the **{rjd3qr}** package is to provide a quick
-and easy access to the JDemetra+ cruncher (`JWSACruncher`) from R. The
-cruncher is a tool for updating JDemetra+ workspaces, without having to
-open the graphical user interface. The latest version can be downloaded
-here: <https://github.com/jdemetra/jwsacruncher/releases>. For more
-information, please refer to the [wiki
-page](https://github.com/jdemetra/jwsacruncher/wiki).
+{rjd3qr}\* allows to generate quality reports (QR) using the Cruncher’s
+output (demetra_m.csv file). This report includes a score based on
+seasonal adjustment main diagnostics. It can be used to identify the
+most problematic time series requiring manual review, which is
+particularly useful when seasonally adjusting a large number of series.
+More information on the production process of seasonally adjusted series
+[here](https://inseefr.github.io/rjd3qr/prod.jdemetra.org)
 
-With **{rjd3qr}**, you can also generate a *quality report* based on the
-cruncher’s output. This report is a formatted summary of the seasonal
-adjustment process master diagnostics and parameters. It can be used to
-spot the most problematic series which will require a finer analysis.
-This is most useful when dealing with a large number of series.
+To first obtain the Cruncher output (demetra_m.csv file), you must use
+the [rjwsacruncher](https://github.com/AQLT/rjwsacruncher) package
 
 ### Installation
 
@@ -321,7 +307,7 @@ The thresholds of the QR tests can be customised You have to modify the
 option `"rjd3qr.thresholds"`.
 
 To get the (default or not) values of the thresholds of the tests, you
-can call the fonction
+can call the function
 [`get_thresholds()`](https://inseefr.github.io/rjd3qr/reference/get_thresholds.md)
 :
 
@@ -404,7 +390,7 @@ get_thresholds(default = TRUE)
 #>         0         1         3         5
 ```
 
-To change the value of the option, you can use the fonction
+To change the value of the option, you can use the function
 [`set_thresholds()`](https://inseefr.github.io/rjd3qr/reference/set_thresholds.md):
 
 ``` r
@@ -451,7 +437,7 @@ get_thresholds(test_name = "grade", default = FALSE)
 #>       0.0       0.1       1.0      10.0
 ```
 
-#### Calculate a quality report
+#### Generating a quality report
 
 For example, starting from a matrix `demetra_m.csv` :
 
@@ -487,7 +473,7 @@ print(BQ$modalities)
 #> 3               <NA>     Good    <NA> Bad Good Good         <NA>
 ```
 
-#### Calculate a score
+#### Compute a score
 
 It is now possible to calculate a score from the quality report:
 
@@ -513,15 +499,4 @@ extract_score(x = BQ_score)
 
 #### Exporting a quality report
 
-Finally, you can export a quality report using the `export_xlsx`
-function.
-
-### Other informations
-
-For more informations on installing and configuring the **{rjd3qr}**
-package, you can visit the
-[wiki](https://github.com/jdemetra/jwsacruncher/wiki) page.
-
-For a more comprehensive description of the R packages for JDemetra+
-check the Insee working paper [R Tools for JDemetra+: Seasonal
-adjustment made easier](https://www.insee.fr/en/statistiques/5019812)
+Finally, you can export a quality report using the `write` function.

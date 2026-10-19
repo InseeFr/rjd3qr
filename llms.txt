@@ -12,10 +12,10 @@ ici : <https://github.com/jdemetra/jwsacruncher/releases>. Pour plus
 d’information, vous pouvez visiter la page
 [wiki](https://github.com/jdemetra/jwsacruncher/wiki).
 
-Avec **{rjd3qr}**, vous pouvez aussi générer des *bilans qualité*
-utilisant l’output du cruncher. Ce bilan est un résumé des diagnostiques
-de la désaisonnalisation. Il peut être utilisé pour repérer les séries
-les plus problématiques qui nécessitent une analyse plus fine. Cela est
+\*{rjd3qr}\*\* permet de générer des *bilans qualité* utilisant l’output
+du Cruncher (fichier demetra_m.csv). Ce bilan comporte de la
+désaisonnalisation. Il peut être utilisé pour repérer les séries les
+plus problématiques qui nécessitent une expertise manuelle. Cela est
 très utile lorsqu’on a beaucoup de séries à désaisonnaliser.
 
 ### Installation

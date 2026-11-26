@@ -27,13 +27,13 @@ This vignette explains how to create a JVS Quality Report with the {rjd3qr} pack
 
 Le plug-in JVS (Job Vacancy Survey) est un plug-in additionnel du logiciel JDemetra+. 
 
+### Version 3
+
+En version 3, le plug-in est hebergé sur le GitHub de [jdemetra](https://github.com/jdemetra/), sur le repo [jdplus-eurostat](https://github.com/jdemetra/jdplus-eurostat/). Pour récupérer la dernière version, il faut aller dans la partie [Releases](https://github.com/jdemetra/jdplus-eurostat/releases), puis télécharger le plug-in (nommé jdplus-jvsqr-desktop-plugin).
+
 ### Version 2
 
 En version 2, il est disponible sur le GitHub [Sace2015](https://github.com/Sace2015) : https://github.com/Sace2015/EurostatQR. Vous trouverez la [documentation du plug-in](https://github.com/Sace2015/EurostatQR/raw/refs/heads/master/2018-10-26%20A%20PlugIn%20For%20Eurostat%20Job%20Vacancy%20Survey.docx) sur ce même repo.
-
-### Version 3
-
-En version 3, le plug-in est hebergé sur le GitHub de [jdemetra](https://github.com/jdemetra/), sur le repo [jdplus-incubator](https://github.com/jdemetra/jdplus-incubator/). Pour récupérer la dernière version, il faut aller dans la partie [Releases](https://github.com/jdemetra/jdplus-incubator/releases), puis télécharger le plug-in (nommé jdplus-eurostat-desktop-plugin).
 
 ### Dsecription
 

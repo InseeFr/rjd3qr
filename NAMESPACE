@@ -54,18 +54,24 @@ export(retain_indicators)
 export(set_thresholds)
 export(weighted_score)
 export(write)
-importFrom(openxlsx,addStyle)
-importFrom(openxlsx,addWorksheet)
-importFrom(openxlsx,conditionalFormatting)
-importFrom(openxlsx,createStyle)
-importFrom(openxlsx,createWorkbook)
-importFrom(openxlsx,saveWorkbook)
-importFrom(openxlsx,writeData)
-importFrom(stats,acf)
-importFrom(stats,na.omit)
-importFrom(stats,na.pass)
-importFrom(stats,pnorm)
-importFrom(stats,sd)
+importFrom(openxlsx,
+  addStyle,
+  addWorksheet,
+  conditionalFormatting,
+  createStyle,
+  createWorkbook,
+  saveWorkbook,
+  writeData
+)
+importFrom(stats,
+  acf,
+  na.omit,
+  na.pass,
+  pnorm,
+  sd
+)
 importFrom(tools,file_ext)
-importFrom(utils,read.csv)
-importFrom(utils,write.table)
+importFrom(utils,
+  read.csv,
+  write.table
+)
